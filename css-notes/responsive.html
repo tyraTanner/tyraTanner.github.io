@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>CSS Responsive Design</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;0,800;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://kit.fontawesome.com/6d1cdaab81.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header-mobile no-display-desktop">
+        <i class="fa-solid fa-bars hidden"></i>
+        <h4 class="header-title">
+          <em id="page-title">Responsive Design</em>
+        </h4>
+      </div>
+      <div class="header-desktop no-display-mobile">
+        <h4 class="header-title">
+          <em id="page-title">Responsive Design</em
+          ><span class="accent">|</span> Tyra's CSS Notes
+        </h4>
+      </div>
+      <div class="sidenav">
+        <a href="home.html" id="home">
+          <h4>
+            <i class="fa-solid fa-chevron-left outer-arrow"></i
+            ><i class="fa-solid fa-chevron-left middle-arrow"></i
+            ><i class="fa-solid fa-chevron-left inner-arrow"></i> HOME
+          </h4>
+        </a>
+        <hr />
+        <a href="#media-queries" class="links">MEDIA QUERIES</a>
+        <a href="#breakpoints" class="links">BREAKPOINTS</a>
+        <a href="#clamping" class="links">CLAMPING</a>
+        <a href="#typography" class="links">TYPOGRAPHY ON MOBILE</a>
+      </div>
+      <main>
+        <div id="main-text">
+          <h2 id="media-queries">Media Queries</h2>
+          <p>
+            Responsive design in CSS refers to the ability to change the layout
+            based on the size of the screen, so the same html can be used for
+            desktop, tablet, and mobile.
+          </p>
+          <p>
+            The main tool in the arsenal of responsive design is the @media
+            query.
+          </p>
+          <p>
+            Check out my awesome row of boxes (on desktop), only one box (on
+            mobile). When the screen is less than 800px, three boxes become two.
+            When the screen is less than 480px, only one box shows.
+          </p>
+          <div id="responsive-boxes">
+            <div></div>
+            <div class="no-display-mini"></div>
+            <div class="no-display-mobile"></div>
+          </div>
+          <p>
+            The above is accomplished with the following style, which makes the
+            third box (#hidden) disappear when the screen reaches the indicated
+            width:
+          </p>
+          <div class="img-black">
+            <img class="half-width" src="img/mediaQuery.png" />
+          </div>
+          <h4>Where to Put Media Queries</h4>
+          <p>
+            Put media queries at the end of your CSS file. They override other
+            styles, and as we know, the last styles in the cascading style sheet
+            get preference, so your media queries will fail if they come before
+            the styles they are intended to override.
+          </p>
+          <h2 id="breakpoints">Breakpoints</h2>
+          <p>
+            Breakpoints are cutoffs for different viewing devices. The following
+            are the instructor's, Josh Comeau's, recommended breakpoints:
+          </p>
+          <div class="quote">
+            0-550px — Mobile <br />550-1100px — Tablet <br />1100-1500px —
+            Laptop<br />
+            1500+px — Desktop
+          </div>
+          <p>
+            The modern iphone has around 375px, but some androids have 400px, so
+            it's best to give a buffer area to allow for differences in mobile
+            devices, etc.
+          </p>
+          <p>
+            While these recommended breakpoints are in pixels, it's really best
+            to use rem for breakpoints. For example, if a user increases their
+            default font size, it might be better to have the tablet layout on
+            desktop in those cases, because rem will scale with the default font
+            size.
+            <!-- <a
+              href="https://courses.joshwcomeau.com/css-for-js/05-responsive-css/07-breakpoints"
+              >rem will scale with the default font size</a
+            >. -->
+          </p>
+          <h4>The All Important Order of Media Query Breakpoints</h4>
+          <p>
+            So great, you've got some breakpoints figured out, and if you write
+            an exclusive media query that only allows for the styles within to
+            work if the screen is bigger than 550px AND if the screen is smaller
+            than 1100px, then go ahead and slap that baby down in any order...
+          </p>
+          <p>But, developers often write their queries like this:</p>
+          <div class="img-black">
+            <img class="half-width" src="img/mediaBreakpoints.png" />
+          </div>
+          <p>
+            If you'll notice, the first query applies to desktop and smaller. It
+            will apply as long as the screen is smaller than 1500px. Now, when
+            the screen gets smaller than 1100px, why does it switch to yellow at
+            all? The blue background still applies!
+          </p>
+          <p>
+            The answer: the <strong>order</strong> of the media queries. As
+            always, the last style will be applied if there are conflicting
+            styles. This means you need to put your least exclusive styles
+            first. If the desktop style in this example were the last style in
+            the list, it would always apply. None of the others would show up.
+          </p>
+
+          <h2 id="clamping">Clamping</h2>
+          <p>
+            Before we explain clamping, let's talk about how min-width and
+            max-width can help with responsive design.
+          </p>
+          <div class="responsive-clamp">
+            <p>
+              This box has a min-width of 500px and a max-width of 700px, as
+              well as a width of 80%. When all of these values are set, it
+              allows this box to respond to the amount of space it has been
+              given. Width: 80% is its ideal width, but it is not allowed to
+              grow smaller than 500px nor larger than 900px. These constraints
+              can be quite handy when creating responsive webpages, because you
+              won't want the box to remain at 80% on mobile, so the min-width
+              will keep the box wider as the page shrinks. However! If the
+              screen goes smaller than 500px, it will create a scrollbar and
+              break the layout! In fact, it was breaking my layout. I had to
+              change its settings to the clamp property below to fix it.
+            </p>
+          </div>
+          <p>The <span>clamp</span> property. It looks like this:</p>
+          <div class="img-black">
+            <img class="half-width" src="img/responsive-clamp.png" />
+          </div>
+          <p>
+            The first value is <span>min-width</span>, the second is the
+            <span>ideal width</span>, and the third is the
+            <span>max-width</span>.
+          </p>
+          <p>
+            While this might look like only a shorthand, it can help us fix the
+            problem of scrollbars being introduced once we hit the min-width,
+            because now the max-width property can be used in combination with
+            clamp.
+          </p>
+          <div class="img-black">
+            <img class="half-width" src="img/responsive-clamp-max.png" />
+          </div>
+          <div class="responsive-clamp">
+            <p>
+              This box will never exceed 100% of the screen width, and thus will
+              never cause a scrollbar. This is a powerful combination for
+              responsive design.
+            </p>
+          </div>
+          <h2 id="typography">Typography on Mobile</h2>
+          <p>
+            Typography on mobile and desktop should be the same for the most
+            part. For basic body text, the size should be at least 16px (1rem).
+            (Remember to use rem for font-size).
+          </p>
+          <h4>Default Sizes</h4>
+          <p>
+            The problem on mobile is that some html elements have a default size
+            smaller than 16px. Textarea and input default to a smaller size, yet
+            iOS will automatically zoom in on text input fields with font-sizes
+            smaller than 16px. This means that by default, text inputs will
+            break your layout and zoom oddly on mobile. It's an easy fix but
+            important to remember:
+          </p>
+          <div class="img-black">
+            <img class="half-width" src="img/input-font-size.png" />
+          </div>
+          <p>
+            You should probably include this in a CSS reset, but you could also
+            put the value to inherit, as long as your html or body text is set
+            to at least 16px.
+          </p>
+          <h4>Headings</h4>
+          <p>
+            Headings on mobile, however, might need to be adjusted, because
+            large, long headings can take up the entire screen.
+          </p>
+          <p>
+            One way is to use media queries and make the headings a more
+            appropriate size.
+          </p>
+          <p>
+            Another way is to use <span>fluid typography</span>. Fluid
+            typography can be achieved by using <span>vw</span>, or viewing
+            width. However, you'll want to use <span>clamp</span> as well,
+            because a heading of 6vw will become VERY large on wide screens and
+            unreadably tiny on small screens, so it's important to set mininum
+            and maximum sizes. Something like:
+            <span> font-size: clamp(1.5rem, 6vw, 3rem);</span>
+          </p>
+          <p>
+            But...there's a problem. Using a fluid unit like vw disables zoom.
+            That means if the user zooms in to make the font bigger, it won't
+            work for the headings. To fix this, mix units on the ideal size in
+            the clamp property:
+            <span> font-size: clamp(1.5rem, 4vw + 1rem, 3rem);</span> This will
+            make the text zoomable again.
+          </p>
+          <!-- <p>
+            This
+            <a
+              href="https://courses.joshwcomeau.com/css-for-js/05-responsive-css/16-fluid-calculator"
+              >fluid calculator</a
+            >
+            can help you decide the rate at which you want your text to grow.
+            You can also use the fluid calculator on other properties, like gap
+            in a flexbox, not just font-size.
+          </p> -->
+        </div>
+      </main>
+    </div>
+    <div class="modal-background no-display"></div>
+
+    <script src="script.js" async defer></script>
+  </body>
+</html>

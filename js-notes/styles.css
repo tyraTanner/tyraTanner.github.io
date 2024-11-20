@@ -1,0 +1,387 @@
+/* TO DO */
+/* Don't like scroll-behavior smooth, is there another option? */
+
+/* CSS RESET */
+
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/*
+  3. Allow percentage-based heights in the application
+*/
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+/*
+  Typographic tweaks!
+  4. Add accessible line-height
+  5. Improve text rendering
+*/
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+/*
+  6. Improve media defaults
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+/*
+  7. Remove built-in form typography styles
+*/
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+/*
+  8. Avoid text overflows
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+/*
+  9. Create a root stacking context
+*/
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/**** GLOBAL STYLES ****/
+
+:root {
+  --medium-gray: hsl(0deg, 0%, 40%);
+  --charcoal-gray: hsl(0deg, 0%, 24%);
+  --main-accent: hsl(150deg, 54%, 90%);
+  --main-link: hsl(220deg, 80%, 50%);
+  --main-link-hover: hsl(261, 58%, 56%);
+  --sidenav-left-link-hover: hsl(169deg, 77%, 51%);
+  --sidenav-right-link: hsl(169deg, 100%, 63%);
+  --sidenav-right-link-hover: hsl(80deg, 76%, 53%);
+}
+
+/**** Grid Container ****/
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+}
+
+/* Global Styles */
+
+html {
+  scroll-padding-top: 24px;
+}
+
+body {
+  color: var(--charcoal-gray);
+  font-family: "Montserrat", sans-serif;
+  line-height: 1.4;
+}
+
+a {
+  text-decoration: none;
+}
+
+h2 {
+  margin: 0;
+  position: relative;
+  top: 0;
+  z-index: 1;
+  transform: skew(-20deg); /* Undoes skew of container */
+}
+
+h2,
+h3 {
+  text-transform: uppercase;
+}
+
+h4 {
+  color: var(--charcoal-gray);
+  width: fit-content;
+  border-bottom: 1px solid var(--charcoal-gray);
+}
+
+li {
+  padding: 12px;
+}
+
+figcaption {
+  font-size: 0.75rem;
+}
+
+/* SideNav */
+
+.sidenav-left {
+  grid-column: 1 / 2; /* Grid item is on left in first grid column */
+  position: sticky;
+  top: 0;
+  height: 100vh; /* Needed for sticky position */
+  overflow-y: scroll;
+  min-width: 230px;
+  background-color: var(--charcoal-gray);
+  color: white;
+  padding: 16px;
+  text-align: center;
+  z-index: 1;
+}
+
+.sidenav-left a {
+  color: white;
+  display: block;
+  padding: 24px 8px;
+  text-transform: uppercase;
+}
+
+.sidenav-left a:hover {
+  color: var(--sidenav-left-link-hover);
+}
+
+.sidenav-left a:last-child {
+  margin-bottom: 60px;
+}
+
+.sidenav-left hr {
+  width: 30%;
+}
+
+.sidenav-right {
+  grid-column: 3 / 4; /* Grid item is on right in last grid column */
+  position: sticky;
+  top: 0;
+  height: 100vh; /* Needed for sticky position */
+  overflow-y: scroll;
+  min-width: 230px;
+  background-color: var(--charcoal-gray);
+  color: white;
+  padding-top: 16px;
+  text-align: center;
+}
+
+.sidenav-right a {
+  color: var(--sidenav-right-link);
+}
+
+.sidenav-right a:hover {
+  color: var(--sidenav-right-link-hover);
+}
+
+.sidenav-right-textbox {
+  background-color: var(--medium-gray);
+  margin: 16px;
+  padding: 16px;
+}
+
+/*** Title  ***/
+
+.title-div {
+  background-color: var(--main-accent);
+  font-size: 1.5rem;
+  padding: 16px 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/**** Main Content  ****/
+
+.main-content {
+  grid-column: 2 / 3; /* Grid item is in middle column */
+  overflow: hidden; /* Needed for scrollbars to work for Prism */
+}
+
+.main-content a {
+  color: var(--main-link);
+  font-weight: 600;
+}
+
+.main-content a:hover {
+  color: var(--main-link-hover);
+}
+
+.main-content pre {
+  background-color: var(--charcoal-gray);
+} /* Changes background of code examples */
+
+.main-content code {
+  line-height: 1.8;
+}
+
+.h2-container {
+  background-color: var(--main-accent);
+  position: relative;
+  left: 8px;
+  transform: skew(20deg) translate(-8px, 0);
+  width: fit-content;
+}
+
+.js-font {
+  color: white;
+  font-family: "Courier Prime", monospace;
+  width: fit-content;
+  background-color: var(--medium-gray);
+  border-radius: 5px;
+  padding: 6px 8px 4px;
+  margin: 8px 0; /* Only works for li, spans aren't block */
+}
+
+span.js-font {
+  line-height: 2;
+} /* Didn't want line-height for all of .js-font class because it includes li elements, which line height makes gray box taller */
+
+.text-para {
+  padding: 32px;
+}
+
+/* Image Styles */
+
+.centered-img {
+  width: min(100%, 500px);
+  margin: 0 auto;
+}
+
+.img-scroll-container {
+  margin: 0; /* Reset figure element */
+  width: 100%;
+  overflow-x: scroll;
+  border-radius: 5px;
+}
+
+.img-scroll {
+  width: max(800px, 100%);
+  max-width: initial; /* Reset the reset, ha */
+}
+
+.main-content ::-webkit-scrollbar {
+  height: 6px;
+}
+
+.main-content ::-webkit-scrollbar-thumb {
+  background: var(--medium-gray);
+  border-radius: 8px;
+  box-shadow: inset 2px 2px 2px hsl(0deg 0% 100% / 25%),
+    inset -2px -2px 2px rgb(0 0 0 / 25%);
+}
+
+/**** MEDIA QUERIES ****/
+
+/* Desktop */
+
+@media (min-width: 46rem) {
+  .mobile-superheader {
+    display: none;
+  }
+}
+
+/* Laptop (No right sidenav) */
+
+@media (max-width: 75rem) {
+  .sidenav-right {
+    display: none;
+  }
+
+  .container {
+    grid-template-columns: 1fr 3fr;
+  }
+}
+
+/* Tablet & Mobile */
+
+@media (max-width: 46rem) {
+  html {
+    scroll-padding-top: 48px;
+  }
+
+  .no-scroll {
+    overflow: hidden;
+  } /* Body doesn't scroll when menu open */
+
+  .mobile-superheader {
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    height: 32px;
+    width: 100%;
+    background-color: hsl(0deg, 0%, 80%);
+    z-index: 2; /* Stays in front of h2's */
+  }
+  /*  maybe include a back to top button, if not at top? */
+
+  .mobile-superheader i {
+    color: black;
+    padding: 8px;
+    margin-left: 8px;
+  }
+
+  .scroll-top {
+    display: none;
+    color: black;
+    font-size: 0.9rem;
+    align-self: center;
+    padding: 4px 8px;
+  }
+
+  .scroll-top-open {
+    display: block;
+  }
+
+  .scroll-top .arrow {
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+
+  .container {
+    display: initial;
+  } /* Container not a grid on mobile */
+
+  .title-div {
+    font-size: initial;
+    margin-top: 32px;
+  }
+
+  .title-div h1 {
+    margin: 0;
+  } /* Removes default margin, it was causing a gap above the title-div */
+
+  .sidenav-left {
+    display: none;
+    width: 100%;
+  }
+
+  .sidenav-open {
+    display: block;
+    position: fixed;
+    top: 32px;
+  }
+
+  .text-para {
+    padding: 16px;
+  }
+
+  .h2-container {
+    width: 80%; /* Fit-content on mobile creates a horizontal scrollbar */
+  }
+}

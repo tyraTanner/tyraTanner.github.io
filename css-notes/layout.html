@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>CSS Layout Notes</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;0,800;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://kit.fontawesome.com/6d1cdaab81.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header-mobile no-display-desktop">
+        <i class="fa-solid fa-bars hidden"></i>
+        <h4 class="header-title">
+          <em id="page-title">Layout</em>
+        </h4>
+      </div>
+      <div class="header-desktop no-display-mobile">
+        <h4 class="header-title">
+          <em id="page-title">Layout</em><span class="accent">|</span> Tyra's
+          CSS Notes
+        </h4>
+      </div>
+      <div class="sidenav">
+        <a href="home.html" id="home">
+          <h4>
+            <i class="fa-solid fa-chevron-left outer-arrow"></i
+            ><i class="fa-solid fa-chevron-left middle-arrow"></i
+            ><i class="fa-solid fa-chevron-left inner-arrow"></i> HOME
+          </h4>
+        </a>
+        <hr />
+        <a href="#box-model" class="links">BOX MODEL</a>
+        <a href="#flow-layout" class="links">FLOW LAYOUT</a>
+        <a href="#positioned-layout" class="links">POSITIONED LAYOUT</a>
+        <a href="#flex-box" class="links">FLEXBOX</a>
+        <a href="#grid" class="links">GRID</a>
+        <a href="#columns" class="links">COLUMNS & FLOATS</a>
+      </div>
+      <main>
+        <div id="main-text">
+          <h2 id="box-model">Box Model</h2>
+          <p>
+            The <span>Box Model</span> in CSS refers to the box that surrounds
+            each element. Each element can have padding, border, and margin
+            (except for inline elements which cannot have top/bottom margin).
+            The Box Model illustrates how the padding is inside the box, border
+            at the edge of the box, and margin on the outside.
+          </p>
+          <p>
+            The Dev Tools show a box model for each element. The following model
+            is from the Box Model heading above.
+          </p>
+          <img
+            class="center-img quarter-width"
+            src="img/boxModel.png"
+            alt="Image of box model diagram from Dev Tools"
+          />
+          <h2 id="flow-layout">Flow Layout</h2>
+          <p>
+            Flow Layout is the default layout mode HTML offers without any CSS
+            modifications.
+          </p>
+          <div class="quote">
+            "In Flow layout, every element will use a display value of either
+            inline, block, or inline-block. This value governs how the Flow
+            layout algorithm will place the element." -Josh Comeau
+          </div>
+          <p>
+            <span>Inline</span> elements cannot have top and bottom margin, and
+            their height and width cannot be changed.
+          </p>
+          <p>
+            The exception is the <span>&lt;img&gt;</span> tag. It's an inline
+            element, but it's width and height can be changed. However, it's
+            best to change images to <span>display: block</span> in your CSS
+            reset anyway.
+          </p>
+          <p>
+            The <span>&lt;button&gt;</span> tag is also a special inline element
+            that allows for top/bottom margins.
+          </p>
+          <p>
+            In Flow layout, you rely on margin, padding, and border to create
+            the layout.
+          </p>
+          <h4>Center Elements with Margin</h4>
+          <p>Think of margin as the gap between elements.</p>
+          <p>
+            You can horizontally center items with left and right margin set to
+            auto.
+          </p>
+          <div class="quote">
+            <p>
+              "This only works for horizontal margin. Setting top/bottom margin
+              to auto is equivalent to setting it to 0px*.
+            </p>
+            <p>
+              This only works on elements with an explicit width. Block elements
+              will naturally grow to fill the available horizontal space, so we
+              need to give our element a width in order to center it." -Josh
+              Comeau
+            </p>
+          </div>
+          <h4>Margin Collapse</h4>
+          <p>
+            If you find margin doing unexpected things, it might be due to
+            margin collapse. This happens when two margins share the same space.
+            <!-- Learn the rules of margin collapse
+            <a
+              href="https://courses.joshwcomeau.com/css-for-js/01-rendering-logic-1/12-rules-of-margin-collapse"
+              >here</a
+            >. -->
+          </p>
+          <p>
+            Margins only collapse in Flow Layout, the default CSS layout. They
+            won't collapse with Flexbox or Grid. Also, only adjacent elements
+            collapse. If the collapsing margins have different values, the
+            bigger value wins. Padding or border will prevent margins from
+            collapsing.
+          </p>
+          <div class="quote">
+            <p>
+              "What if we have multiple margins competing for the same space,
+              and some are negative? If there are more than 2 margins involved,
+              the algorithm looks like this:
+            </p>
+            <p class="indent-2">
+              Find the largest positive margin<br />Find the largest negative
+              margin<br />Add those two numbers together" -Josh Comeau
+            </p>
+          </div>
+          <p>
+            Some developers have decided margin is too unpredictable and should
+            be avoided. Better to use padding and layout when possible.
+          </p>
+          <h2 id="positioned-layout">Positioned Layout</h2>
+          <p>
+            In Positioned Layout, items can overlap. To create a positioned
+            layout, use the <span>position</span> property. The default setting
+            is <span>static</span>, which means there is no positioning set.
+            Options for positioning are
+            <span>relative, absolute, fixed,</span> or <span>sticky.</span>
+          </p>
+          <h4>Stacking Contexts</h4>
+          <p>
+            <span>Z-Index</span> has no effect on Flow layout elements. It works
+            with Positioned layout, as well as Flexbox and Grid. The DOM order
+            defines which overlapping elements sit in front of the others, but a
+            positioned element will always sit in front of a non-positioned
+            element. If you need to control the order further, use z-index. The
+            default value is 0, and anything greater will promote that element
+            in front of others.
+          </p>
+          <p>
+            Whenever an element is given a position (no matter which one:
+            relative, absolute, etc.) AND a z-index (see definintion below), it
+            creates a <span>stacking context.</span> In a stacking context, only
+            siblings are compared to determine which element overlaps the other.
+            No matter how high of a z-index you give a child element, it will
+            never override the z-index of its parent element.
+            <!-- <a
+              href="https://courses.joshwcomeau.com/css-for-js/02-rendering-logic-2/07-stacking-contexts"
+              >here.</a
+            > -->
+          </p>
+          <p>
+            Other situations that create a new stacking context (from Josh
+            Comeau):
+          </p>
+
+          <div class="quote">
+            <p class="indent-2">
+              Setting opacity to a value less than 1<br />
+              Setting position to fixed or sticky (No z-index needed for these
+              values!)<br />
+              Applying a mix-blend-mode other than normal<br />
+              Adding a z-index to a child inside a display: flex or display:
+              grid container<br />
+              Using transform, filter, clip-path, or perspective<br />
+              Explicitly creating a context with isolation: isolate
+            </p>
+          </div>
+          <!-- <p>
+            Consider installing the
+            <a
+              href="https://github.com/andreadev-it/stacking-contexts-inspector"
+              >stacking context inspector</a
+            >
+            to help debug stacking contexts.
+          </p> -->
+          <h5>Isolation</h5>
+          <p>
+            Best way to control stacking contexts is to create them on purpose
+            using the property designed for this purpose,
+            <span>isolation: isolate;</span>
+          </p>
+          <p>
+            This setting creates its own stacking context. That way, all of the
+            children within it will only compare z-index values with each other
+            and not with outside elements like nav bars, sticky headers, etc.
+          </p>
+          <!-- <p>
+            Check out the example
+            <a
+              href="https://courses.joshwcomeau.com/css-for-js/02-rendering-logic-2/08-reducing-z-index"
+              >here.</a
+            >
+          </p> -->
+          <h4>Relative Position</h4>
+          <p>
+            Setting <span>position: relative</span> by itself will do nothing!
+            Use it in combination with top, bottom, left, and right properties.
+            Think of it like a relative pushing you around. When you set
+            position: relative and add a direction the push is coming from left:
+            40px, then the item will be moved from that direction.
+          </p>
+          <div class="box"></div>
+          <div class="box relative">Left: 40px</div>
+          <div class="box"></div>
+          <p>
+            Cool thing about relative positioning is that the browser still
+            thinks of the item as being in its original position. So unlike
+            margin, relative positioning can shift an element without pushing
+            anything around it!
+          </p>
+
+          <p>Even inline elements can be assigned relative positioning:</p>
+          <p>
+            This text has no positioning,
+            <span class="inline-relative"
+              >while this text is set to position: relative, bottom: 5px.</span
+            >
+          </p>
+          <h4>Absolute Position</h4>
+          <p>
+            <span>Absolute positioning</span> pulls an element out of the flow
+            of the page and puts it wherever specified by the properties top,
+            right, bottom, left.
+          </p>
+          <div class="quote">
+            'Being able to take elements out-of-flow is super handy. Any time
+            you want an element to be "floating above" the content, like a
+            tooltip or a dropdown or a modal, absolute positioning is your
+            friend.' -Josh Comeau
+          </div>
+          <p>
+            But, unexpected overlap can be a problem with absolute positioning.
+            Also, a parent div will collapse if it has no height or width
+            settings, and the child element inside of it is absolutely
+            positioned.
+            <!-- <a
+              href="https://courses.joshwcomeau.com/css-for-js/02-rendering-logic-2/02-absolute"
+              >here.</a
+            > -->
+          </p>
+          <h5>Center Elements</h5>
+          <p>
+            There's a <span>trick to center elements</span> using absolute
+            positioning. Cool thing about it? It centers elements both
+            <span>horizontally AND vertically</span>.
+          </p>
+          <div class="quote">
+            <p>"There are 4 important ingredients for this trick to work:</p>
+
+            <p class="indent-2">
+              Absolute positioning (position: absolute)<br />Equal distances
+              from each edge (ideally 0px)<br />A fixed size (defined width and
+              height properties, fit-content works here)<br />Hungry margins
+              (margin: auto)" -Josh Comeau
+            </p>
+          </div>
+          <h5>Containing Blocks</h5>
+          <p>
+            Elements that are absolutely positioned are pulled out of the flow
+            of the layout and ignore a lot of the rules of Flow layout. One of
+            those rules is in regard to containing blocks. It doesn't matter if
+            a child element is inside of a parent element in the HTML. When
+            absolutely positioned, it will go outside of the parent element if
+            told to do so.
+          </p>
+          <p>
+            But! If the parent is also using any of the Positioned layouts, the
+            child element will be forced to stay inside of the parent element.
+            This can lead to unexpected behavior!
+          </p>
+          <p>
+            Also, the child element disregards the padding of the parent
+            element. Absolutely positioned elements ignore padding!
+          </p>
+          <p>
+            Absolutely positioned elements ignore the overflow of parent
+            elements as well.
+          </p>
+          <h4>Fixed Position</h4>
+          <p>
+            To use fixed positioning, give your element the declaration of
+            <span>position: fixed</span> AND give it a location using
+            <span>right, left, top, bottom.</span> If a fixed position element
+            isn't given a location, it will remain in its default "in flow"
+            position. If that default location happens to be off screen, when
+            you scroll, the fixed item will never appear.
+          </p>
+          <p>
+            Fixed positioning is similar to Absolute positioning in that it is
+            pulled out of the flow of the document. However, it is different in
+            that it is immune to scrolling.
+          </p>
+          <p>
+            If your fixed position element IS scrolling, chances are there's a
+            parent/grandparent element using the transform property. This can
+            mess with fixed positioning.
+          </p>
+          <p>
+            Fixed position elements are immune to overflow settings. That's
+            because the parent of fixed elements is the viewport, not the HTML
+            elements.
+          </p>
+          <h4>Sticky Position</h4>
+          <p>Sticky positioning is a blend between relative and fixed.</p>
+          <div class="quote">
+            <p>
+              '[P]osition: sticky is the newest addition to the crew. The idea
+              is that as you scroll, an element can "stick" to the edge. At that
+              moment, it transitions from being relatively-positioned to being
+              fixed-positioned.
+            </p>
+            <p>
+              In addition to setting position: sticky, you also need to pick at
+              least one edge to stick to (top, left, right, bottom). Most
+              commonly, this is done with top: 0px.' <br />-Josh Comeau
+            </p>
+          </div>
+          <p>
+            Cool thing about sticky headers: they stay in their containing
+            blocks. So it will stick in place until the containing block is
+            scrolled out of view.
+          </p>
+          <p>
+            Sticky elements sometimes unexpectedly don't stick, especially if
+            it's parent/grandparent container has overflow: hidden.
+            <!-- <a
+              href="https://courses.joshwcomeau.com/css-for-js/02-rendering-logic-2/17-troubleshooting"
+              >Troubleshoot sticky positioning.</a
+            > -->
+          </p>
+          <h2 id="flex-box">Flexbox</h2>
+          <p>
+            Flexbox is CSS's first intentional layout mechanism. Flexbox works
+            best for elements in a single dimension: think of a straight line of
+            elements, whether in a row or column, like a nav bar or a side bar.
+            Flexbox can help to space out those elements and can also stretch or
+            shrink those elements to fit in the space.
+          </p>
+          <h4>Parent and Children Elements</h4>
+          <p>
+            Important thing about Flexbox: there needs to be a container element
+            that holds the flex items.
+          </p>
+          <ul>
+            The following
+            <span>flex container properties</span>
+            are always set on the parent:
+            <li>flex-direction</li>
+            <li>flex-wrap</li>
+            <li>flex-flow</li>
+            <li>justify-content</li>
+            <li>align-items</li>
+            <li>align-content</li>
+            <li>gap</li>
+          </ul>
+          <ul>
+            While these
+            <span>flex item properties</span>
+            are set on the individual children:
+            <li>order</li>
+            <li>flex-grow</li>
+            <li>flex-shrink</li>
+            <li>flex-basis</li>
+            <li>flex</li>
+            <li>align-self</li>
+          </ul>
+          <h4>Vertical Centering</h4>
+          <p>
+            Using Flexbox is the main way to vertically center items in a
+            container. If your flex-direction is set to row (the default), it's
+            a simple matter of adding <span>align-items: center</span> to the
+            parent container. But! You might try this and nothing happens!
+            That's probably because there is no <span>height</span> set on your
+            parent container. You might try setting <span>height: 100%</span>,
+            but still nothing may happen if you haven't also set both
+            <span>html</span> and <span>body</span> to
+            <span>height: 100%</span> as well. Setting the height to 100vh is
+            another option, but 100vh doesn't work as well on mobile (the height
+            is actually bigger than the viewport, strangely, and will make your
+            centered elements be slightly off), so it's probably best to set
+            heights on html, body, and the container.
+            <!-- <a
+              href="https://courses.joshwcomeau.com/css-for-js/04-flexbox/02-cardinality"
+              >centering exercise</a
+            >. -->
+          </p>
+          <h4>Flex Item Properties</h4>
+          <p>
+            The following properties are used on individual items within a
+            flexbox.
+          </p>
+          <h5>Flex-grow & Flex-shrink</h5>
+          <p>
+            First, let's talk <span>hypothetical size</span>. Usually, width and
+            height are set to specific measurements, and they will stick to that
+            in other layouts. In Flexbox, width and height are hypothetical,
+            meaning the declared size will be used only if there is sufficient
+            space. If there's too much or too little space, you can specifically
+            tell Flexbox which items you want to grow or shrink with the
+            following properties.
+          </p>
+          <p>
+            <span>Flex-grow</span> only has an effect if there is more space
+            available than the size of the elements in the flexbox. The default
+            setting is 0, and any number above that will say how much this item
+            should grow compared to the other items in the Flexbox.
+          </p>
+          <p>
+            Conversely, <span>flex-shrink</span> only applies if the available
+            space is smaller than the hypothetical size of the content. It's
+            important to note that the item cannot shrink to a smaller size than
+            its content. Shrink only works if the hypothetical size is bigger
+            than the min content.
+          </p>
+          <h5>Flex-basis</h5>
+          <p>
+            <span>Flex-basis</span> can be confusing, but it sets the width OR
+            height of an element, depending on the flex-direction, so if it's a
+            row, it's the width, and for column, it's height.
+          </p>
+          <p>
+            If flex-basis AND a width or height are set, flex-basis has
+            priority.
+          </p>
+          <h5>Flex Shorthand</h5>
+          <p>
+            The <span>Flex</span> shorthand does more than just shorten
+            <span>flex-grow, flex-shrink,</span> and
+            <span>flex-basis</span> into one property. It's the recommended way
+            to get multiple elements to each have the same allotted space, even
+            if their content is different. So if you set <span>flex: 1</span>,
+            it sets flex-grow to 1, flex-shrink is already at 1 by default, and
+            it sets flex-basis to 1, which is actually like saying there's no
+            width or height. When there is no width or height, the elements will
+            grow to take up equal amounts of space.
+            <!-- <a
+              href="https://courses.joshwcomeau.com/css-for-js/04-flexbox/05-flex-shorthand"
+              >flex example</a
+            >. -->
+          </p>
+          <div class="quote">
+            <p>
+              '[F]lex: 1 will assign flex-grow: 1, but it will also set
+              flex-basis: 0%. It won't affect the default value for flex-shrink,
+              which is 1.
+            </p>
+            <p>
+              Since flex-basis is a synonym for width in a flex row, we're
+              effectively shrinking each child to have a “hypothetical width” of
+              0px, and then distributing all of the space between each child.'
+              -Josh Comeau
+            </p>
+          </div>
+          <h4>Positioned Layout vs. Flexbox</h4>
+          <p>
+            If a child element in a flexbox is also given a positioned layout,
+            like absolute or fixed,
+            <span>positioned layout always wins</span>. In fact, the Flexbox
+            will ignore that child element as if it doesn't exist!
+          </p>
+          <p>
+            One exception is relative layout, because it doesn't cause the same
+            conflict. Relative layout just tells an item to move a bit in
+            relation to where it's already at, so it will decide where it's at
+            based on Flexbox, then move relative to that.
+          </p>
+          <h2 id="grid">Grid</h2>
+          <p>
+            In case you didn't know, <span>CSS Grid</span> is by far the coolest
+            layout mode yet. While Flexbox is designed for a single dimension,
+            Grid is designed to handle two dimensions.
+          </p>
+          <p>
+            The box below is a grid container with two columns and three rows.
+          </p>
+          <div class="grid-example">
+            <div class="grid-item">
+              <p>Each box is a div with a background color</p>
+            </div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+          </div>
+          <p>The styles for the grid container:</p>
+          <div class="img-black">
+            <img src="img/gridExample.png" class="half-width" />
+          </div>
+          <p>
+            Notice how the grid container has a height, but no set width. The
+            grid items within the container will automatically take up as much
+            space as is available.
+          </p>
+          <p>
+            But we can do much more with Grid. We can explicitly tell each grid
+            item how many rows and columns of space we want them to span over.
+            The grid below is identical to the one above, with three columns and
+            two rows, but the grid items have been told to span more columns and
+            rows.
+          </p>
+          <div class="grid-example">
+            <div class="grid-item box-1">
+              <p>Grid-column: <span class="no-break">1 / 3</span></p>
+            </div>
+            <div class="grid-item box-2">
+              <p>
+                Grid-column: <span class="no-break">3 / 4</span><br />Grid-row:
+                <span class="no-break">1 / 3</span>
+              </p>
+            </div>
+            <div class="grid-item box-3">
+              <p>Grid-column: <span class="no-break">2 / 3</span></p>
+            </div>
+          </div>
+          <p>
+            Another way to accomplish the same task is by using
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-areas"
+              >grid template areas</a
+            >. These are like variable names you can assign to each area.
+          </p>
+          <h4>Fluid Grids</h4>
+          <p>
+            Grid has its own <span>minmax</span> function that can help to
+            create fluid grids. Combined with <span>repeat: auto-fill</span>, it
+            can resize how many grid items can fit on a row. The following grid
+            is made with this line of code:
+            <span
+              >grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            </span>
+          </p>
+          <p>Try resizing the window to see what this grid is capable of.</p>
+          <div class="grid-fluid">
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+          </div>
+          <h2 id="columns">Columns, Floats & More</h2>
+          <p>
+            There are more layout modes that can help you achieve different
+            effects.
+          </p>
+          <h4>Multi-column Layout</h4>
+          <p>
+            Did you know there was a CSS property called <span>column</span>?
+            Simply define your number of columns, add a
+            <span>column-gap</span> to give some space between columns, and the
+            column algorithm does the rest of the work to keep the columns an
+            even length.
+          </p>
+          <h4>Floats</h4>
+          <p>
+            Floats were used before Flexbox, and isn't seen as much anymore,
+            however, there are a few things only floats can do.
+          </p>
+          <p>
+            Using <span>float: left</span> (or right), is one of the easiest
+            ways to get text to wrap around an img.
+          </p>
+          <p>
+            You can even get your text to wrap around circle-shaped images and
+            custom polygon shapes with the <span>shape-outside</span> property.
+          </p>
+        </div>
+      </main>
+    </div>
+    <div class="modal-background no-display"></div>
+
+    <script src="script.js" async defer></script>
+  </body>
+</html>

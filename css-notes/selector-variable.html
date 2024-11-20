@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>CSS Selectors & Variables</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;0,800;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://kit.fontawesome.com/6d1cdaab81.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header-mobile no-display-desktop">
+        <i class="fa-solid fa-bars hidden"></i>
+        <h4 class="header-title">
+          <em id="page-title">Selectors & Variables</em>
+        </h4>
+      </div>
+      <div class="header-desktop no-display-mobile">
+        <h4 class="header-title">
+          <em id="page-title">Selectors & Variables</em
+          ><span class="accent">|</span> Tyra's CSS Notes
+        </h4>
+      </div>
+
+      <div class="sidenav">
+        <a href="home.html" id="home">
+          <h4>
+            <i class="fa-solid fa-chevron-left outer-arrow"></i
+            ><i class="fa-solid fa-chevron-left middle-arrow"></i
+            ><i class="fa-solid fa-chevron-left inner-arrow"></i> HOME
+          </h4>
+        </a>
+        <hr />
+        <a href="#selectors" class="links">SELECTORS</a>
+        <a href="#variables" class="links">VARIABLES</a>
+      </div>
+      <main>
+        <div id="main-text">
+          <h2 id="selectors">Selectors</h2>
+          <p>
+            The main CSS selectors are element, id, and class. Id and class have
+            a higher specificity than an element. There are many other ways to
+            combine element, classes, and pseudo-classes to target specific
+            items. For a full list of combinators and pseudo-classes, check out
+            <a href="https://www.w3schools.com/cssref/css_selectors.php"
+              >W3schools reference list.</a
+            >
+          </p>
+          <h4>Combinators</h4>
+          <p>
+            <span>.ancestor .descendant</span> Use a space to target any
+            descendants of an element, id, or class.
+          </p>
+          <p>
+            <span>.ancestor.descendant</span> No space between classes? That
+            means both classes must exist on the same element.
+          </p>
+          <p>
+            <span>.mama > .child</span> Here the child must be a direct
+            descendant of the parent.
+          </p>
+          <p>
+            <span>.sister ~ .brother</span> Will choose the siblings of .sister
+            who have a class of .brother. They don't have to be directly
+            adjacent.
+          </p>
+          <p>
+            <span>.sister + .brother</span> Siblings again. This time, they DO
+            have to be directly adjacent, so that .brother follows immediately
+            after .sister.
+          </p>
+          <p>
+            <span>.parents, .children</span> Party time. Give me all the parents
+            and all the children.
+          </p>
+          <h4>Pseudo Classes</h4>
+          <p>
+            Pseudo classes are super useful. They allow you to pick just the
+            first child of a class or element, or only set a style on mouse
+            hover.
+          </p>
+          <p>
+            <span>.flashy-icon:hover</span> Set styles for the flashy-icon class
+            only when the mouse hovers over it.
+          </p>
+          <p>
+            <span>p:not(.uninvited)</span> Selects all p tags that DO NOT have
+            the class .uninvited.
+          </p>
+          <h2 id="variables">Variables</h2>
+          <p>
+            CSS variables are custom properties that you can set for any
+            element.
+          </p>
+          <p>
+            This can be useful in setting values that are used repeatedly
+            throughout your project. For example, the accent color for this page
+            is <span class="accent-span">#ff0063</span>. From anchor tags to
+            horizontal rules, the color value must be specified repeatedly. If I
+            decide to change the accent color, I will need to change it in many
+            places. But if I use a CSS variable, I will only need to change the
+            color in one place.
+          </p>
+          <p>Here's how to declare a custom property:</p>
+          <div class="img-black">
+            <img class="half-width" src="img/accent-color.png" />
+          </div>
+          <p>
+            Take note of the two dashes in front of the custom name, as those
+            are required to show this is a custom property. The value needs to
+            be any valid CSS value.
+          </p>
+          <p>Now slap a "var" in front of that custom property to use it:</p>
+          <div class="img-black">
+            <img class="width-500" src="img/css-variable.png" />
+          </div>
+          <p>
+            Now if I decide to change the color, I only have to do it in my
+            custom property value.
+          </p>
+          <h4>Scope</h4>
+          <p>
+            CSS variables are inheritable, so if you set the custom property on
+            a parent element, it will be inherited by the child as well. But
+            much like scope of a Javascript function, where variables inside a
+            function cannot be accessed outside of it, no elements outside of
+            the parent can access that variable. That's why most of the time,
+            CSS variables are declared in the html element, because every
+            element is a child of the html. It's a way of making the variables
+            have a global scope.
+          </p>
+          <p>
+            If you don't want your custom properties to have a global scope, you
+            can declare them in any specific CSS element.
+          </p>
+          <h4>Practical Uses</h4>
+          <p>
+            There are many more uses for CSS variables than simply decreasing
+            redundancy. They can be used with Javascript to create interactive
+            elements with reactive layouts, as well as in media queries and
+            more.
+            <!-- <a
+              href="https://courses.joshwcomeau.com/css-for-js/05-responsive-css/08-css-variables"
+              >reactive layouts</a
+            >, as well as in media queries and more. -->
+          </p>
+        </div>
+      </main>
+    </div>
+    <div class="modal-background no-display"></div>
+
+    <script src="script.js" async defer></script>
+  </body>
+</html>

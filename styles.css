@@ -1,0 +1,125 @@
+/* CSS Reset */
+/* Feels like it pauses before sidenav comes down */
+
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/*
+  2. Remove default margin
+*/
+* {
+  margin: 0;
+}
+/*
+  3. Allow percentage-based heights in the application
+*/
+html,
+body {
+  height: 100%;
+}
+/*
+  Typographic tweaks!
+  4. Add accessible line-height
+  5. Improve text rendering
+*/
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+/*
+  6. Improve media defaults
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+/*
+  7. Remove built-in form typography styles
+*/
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+/*
+  8. Avoid text overflows
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+/*
+  9. Create a root stacking context
+*/
+#root,
+#__next {
+  isolation: isolate;
+}
+
+body {
+  background-color: #f5fcfb;
+}
+
+img {
+  border-radius: 8px 8px 0 0;
+}
+
+.wrapper {
+  max-width: 1400px;
+  margin: 80px auto;
+  font-family: "Open Sans";
+  padding: 16px;
+}
+.name {
+  font-weight: 800;
+  font-size: 3rem;
+  margin: 36px auto;
+  width: fit-content;
+}
+
+.subTitle {
+  margin: 24px auto;
+  width: fit-content;
+  text-align: center;
+  font-weight: 600;
+}
+
+.cardWrapper {
+  margin: 24px auto;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(min(350px, 100%), 1fr));
+}
+
+.card {
+  background-color: white;
+  text-align: center;
+  color: white;
+  margin: 16px;
+  font-size: 1.1rem;
+  text-decoration: none;
+  border-radius: 8px;
+  box-shadow: 1px 3px 9px rgba(0, 0, 0, 0.1), 1px 3px 9px rgba(0, 0, 0, 0.03);
+}
+
+.cardTitle {
+  background-color: black;
+  padding: 8px 16px;
+  font-weight: 600;
+  border-radius: 0 0 8px 8px;
+}

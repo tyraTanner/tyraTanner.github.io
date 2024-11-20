@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>CSS Units, Width & Height</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;0,800;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://kit.fontawesome.com/6d1cdaab81.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header-mobile no-display-desktop">
+        <i class="fa-solid fa-bars hidden"></i>
+        <h4 class="header-title">
+          <em id="page-title">Units, Height & Width</em>
+        </h4>
+      </div>
+      <div class="header-desktop no-display-mobile">
+        <h4 class="header-title">
+          <em id="page-title">Units, Height & Width</em
+          ><span class="accent">|</span> Tyra's CSS Notes
+        </h4>
+      </div>
+      <div class="sidenav">
+        <a href="home.html" id="home">
+          <h4>
+            <i class="fa-solid fa-chevron-left outer-arrow"></i
+            ><i class="fa-solid fa-chevron-left middle-arrow"></i
+            ><i class="fa-solid fa-chevron-left inner-arrow"></i> HOME
+          </h4>
+        </a>
+        <hr />
+        <a href="#units" class="links">UNITS</a>
+        <a href="#images" class="links">IMAGES</a>
+        <a href="#width" class="links">WIDTH</a>
+        <a href="#height" class="links">HEIGHT</a>
+      </div>
+      <main>
+        <div id="main-text">
+          <h2 id="units">Units</h2>
+          <p>
+            Pixels, em, rem, and percentages! Which to use? Check out
+            <a
+              href="https://www.joshwcomeau.com/css/surprising-truth-about-pixels-and-accessibility/"
+              >Josh Comeau's blog about pixels and accessibility.</a
+            >
+          </p>
+          <div class="quote">
+            <p>
+              "When picking between pixels and rems, here's the question you
+              should be asking yourself: 'Should this value scale up as the user
+              increases their browser's default font size?'' This question is
+              the root of the mental model I use. If the value should increase
+              with the default font size, I use rem. Otherwise, I use px." -Josh
+              Comeau
+            </p>
+          </div>
+          <p>
+            Use <span>rem for font sizes</span>, because using pixels overrides
+            a user's font size choice, and is therefore less accessible for
+            people with poor vision. Using rem means the font size will scale
+            with whatever font size is set as their default. Default is 16px but
+            user's can change it.
+          </p>
+          <p>
+            <span>Use rem for media queries</span> as well. This may seem
+            counterintuitive, because the mobile layout may end up being viewed
+            on a laptop if the user's default font size is bigger than normal,
+            but that's actually a good thing. If they need the font to be large,
+            the mobile layout will look best.
+          </p>
+          <p>
+            <span>Using rem with height and width</span> can also be a good
+            idea, because it will preserve buttons and other elements'
+            proportions in relation to the font size within them, however, it
+            can also make elements become too big to fit on mobile, if the user
+            font size is increased too much. To prevent this, set the element's
+            max-width to 100%, so it won't get bigger than the size of the
+            screen.
+          </p>
+          <p>
+            But using rem on padding and margins means those will also increase
+            if the user increases their default font size, so it might be best
+            to use
+            <span>pixels for padding and margin</span>. The exception would be
+            vertical margins, if you want the space to increase between lines to
+            maintain readability there.
+          </p>
+          <p>
+            Still not sure which to use? Test it. Change your browser's font
+            size and play with rem and pixels and see which makes the best user
+            experience.
+          </p>
+          <p>
+            There's also <span>vh (viewing height)</span> and
+            <span>vw (viewing width)</span> that are pretty handy to fill the
+            screen, but a word of caution, <span>vh</span> DOES NOT work well on
+            mobile and is best to avoid.
+            <!-- <a
+              href="https://courses.joshwcomeau.com/css-for-js/05-responsive-css/11-viewport-units"
+              >here.</a
+            > -->
+          </p>
+          <h2 id="images">Images</h2>
+          <p>
+            Images are replaced items that are embedded in the DOM. They aren't
+            actual elements in the DOM. This can make images do unpredictable
+            things when styling them. It's a good idea to wrap images in a div
+            and style the div instead.
+          </p>
+          <p>
+            Another great way to wrap an image is with the
+            <span>&lt;figure&gt;</span> HTML element. The figure element is a
+            block element that works great with <span>&lt;figcaption&gt;</span>.
+          </p>
+          <p>
+            The browser thinks of images as text, so it will automatically put a
+            few pixels of line height beneath images. If you don't want it
+            there, set images to <span>display: block</span> or to
+            <span>line-height: 0</span>.
+          </p>
+          <p>
+            HTML is space-sensitive, so it will put whitespace between
+            side-by-side images. If you don't want it there, remove spaces
+            between the side-by-side &lt;img&gt; tags.
+          </p>
+          <h2 id="width">Width</h2>
+          <p>
+            You can set width by using rem (recommended), pixels, and
+            percentages.
+          </p>
+          <p>
+            With <span>percentages</span>, it's important to remember the width
+            will be calculated based off of the parent's container, so if your
+            div is set to 50% width, it will take up half of the available width
+            of the parent.
+          </p>
+          <ul>
+            <h4>Width Keywords</h4>
+            <li>
+              <p><span>Width: min-content</span></p>
+              <p class="indent-2">
+                Calculates width based off the child element. If text, it will
+                cause it to wrap to be as small of a width as possible. If a
+                block element, it will shrink to fit child.
+              </p>
+              <p><span>Width: max-content</span></p>
+              <p class="indent-2">
+                Also bases width on child element, but max-content
+                <em>never</em> wraps. That means your text will simply run off
+                the page and not be visible.
+              </p>
+              <p><span>Width: fit-content</span></p>
+              <p class="indent-2">
+                Fit-content is magic. It also bases width on the child element,
+                like both of the above, but whereas min-content shrinks text to
+                one word on a line, and max-content cuts off the excess that
+                doesn't fit on one line, fit-content is smart. It will allow the
+                words to fill up the line, then wrap when needed. Yay.
+              </p>
+            </li>
+          </ul>
+          <h2 id="height">Height</h2>
+          <p>
+            Most of the time, setting the height isn't desirable. We want our
+            pages to be able to expand for any size of content.
+          </p>
+          <p>
+            But there's one case you might want to set a height, and that's if
+            you only have a tiny amount of content on a page, but you still want
+            that container to fill the screen. You might think to use
+            <span>100 vh</span> (viewing height), but it doesn't always work
+            exactly. The answer is min-height, but
+            <em
+              >min-height only works if you set a height for the parent
+              containers</em
+            >. That's because the height of the &lt;body&gt; element defaults to
+            shrink to the size of the children. You need to set
+            <span>height: 100%</span> on every element before your container you
+            wish to set a min-height on, including &lt;html&gt; and
+            &lt;body&gt;, then set <span>min-width: 100%</span> in order for
+            that element to fill the viewport height.
+          </p>
+          <p>
+            It's important to note that Flexbox and Grid do not fix this height
+            issue. So get used to setting <span>height: 100%</span> on
+            &lt;html&gt; and &lt;body&gt; as well as any other parent containers
+            in order to use min-height. Use this in combination with Flexbox to
+            create footers that will stay at the bottom of the page.
+            <!-- <a
+              href="https://courses.joshwcomeau.com/css-for-js/01-rendering-logic-1/11-height"
+              >See how.</a
+            > -->
+          </p>
+          <h2>Caution: Maybe Just Don't Do These Things</h2>
+          <div class="quote">
+            "Exercise caution! It's super important that you never apply the
+            following CSS: button { outline: none; } This rule is sometimes used
+            to hide the blue or black ring that can accompany interacting with a
+            button or link. Sometimes, designers ask us to do this. The problem
+            is that this totally breaks navigation for keyboard users; that ring
+            is required for them to know which element is currently focused! The
+            only exception is if we provide a suitable alternative. For example:
+            button { outline: none; } button:focus { background: navy; color:
+            white; }" -Josh Comeau
+          </div>
+        </div>
+      </main>
+    </div>
+    <div class="modal-background no-display"></div>
+
+    <script src="script.js" async defer></script>
+  </body>
+</html>

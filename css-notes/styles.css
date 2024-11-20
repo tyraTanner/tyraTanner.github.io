@@ -1,0 +1,672 @@
+/* CSS Reset */
+/* Feels like it pauses before sidenav comes down */
+
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/*
+  2. Remove default margin
+*/
+* {
+  margin: 0;
+}
+/*
+  3. Allow percentage-based heights in the application
+*/
+html,
+body {
+  height: 100%;
+}
+/*
+  Typographic tweaks!
+  4. Add accessible line-height
+  5. Improve text rendering
+*/
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+/*
+  6. Improve media defaults
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+/*
+  7. Remove built-in form typography styles
+*/
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+/*
+  8. Avoid text overflows
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+/*
+  9. Create a root stacking context
+*/
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* ---GLOBAL STYLES--- */
+
+html {
+  --accent-color: #ff0063;
+  --mid-blue: hsl(180deg, 41%, 57%); /* For text on black background */
+  --hover-blue: hsl(180deg, 41%, 50%);
+  --dark-blue: hsl(180deg, 100%, 30%);
+  --darkest-blue: hsl(180deg, 100%, 20%);
+  --light-blue-quote: #eaf6f6;
+  --charcoal-gray: hsl(0deg, 0%, 10%);
+  --medium-gray-60: hsl(0deg, 0%, 60%);
+  --medium-dark-gray-15: hsl(0deg, 0%, 15%);
+  --light-gray-85: hsl(0deg, 0%, 85%);
+  --modal-width: 450px;
+}
+
+body {
+  background-color: hsla(180 40% 0%);
+  font-family: "Open Sans", sans-serif;
+}
+
+.indent-2 {
+  padding: 0 24px;
+}
+
+/* Grid Container */
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 4fr; /* Two columns: nav is 1 fraction, main body is 4.*/
+  grid-template-rows: 100px auto; /* Originally set this to percentages, but as the main text grew longer, it made the header bigger too, so header needs a fixed height, and the main text stretches with auto */
+}
+
+/* ---HOME PAGE--- */
+
+#home-main {
+  width: min(95%, 1300px);
+  margin: 48px auto 0 auto; /* This overrides a few "main" styles, so if remove them, it will still have right and bottom margin. Consider optional method for responsive design. Could use media queries to decrease/eliminate margin.*/
+  padding: 16px;
+}
+
+#home-main h2 {
+  border: 2px solid var(--accent-color);
+  color: var(--accent-color);
+  margin-bottom: 16px;
+  padding: 8px 16px 8px 16px;
+  text-align: center;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+
+#home-main a {
+  text-decoration: none;
+}
+
+#home-main p {
+  color: black;
+}
+
+.card-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr));
+}
+
+.card-grid h3 {
+  color: var(--accent-color);
+  text-transform: uppercase;
+}
+
+.grid-article {
+  background-color: var(--light-gray-85);
+  border-radius: 5px;
+  transform: scale(1);
+  transition: transform 300ms;
+} /* Since the transition is on the article, not the hover, it will transition back to scale one */
+
+.grid-article:hover {
+  transform: scale(1.02);
+  filter: drop-shadow(5px 5px 8px hsl(0deg, 0%, 20%));
+} /* Scales the card bigger on hover */
+
+.grid-article:hover .grid-article-img {
+  background-color: var(--hover-blue);
+}
+
+.grid-article-img {
+  background-color: var(--dark-blue);
+  border-radius: 5px 5px 0 0;
+}
+
+.grid-article-text {
+  padding: 16px;
+}
+
+.grid-article-title {
+  width: fit-content;
+} /* Makes rule beneath title only the length of the title */
+
+.title-rule {
+  background-color: var(--accent-color);
+  height: 2px;
+  width: 0;
+  margin: -2px 0 2px 0;
+  transition: width 300ms;
+}
+/* Rule beneath title has 0 width till hover, then transitions to 100% width */
+
+.grid-article:hover .title-rule {
+  width: 100%;
+}
+
+/* ---HEADERS--- */
+
+.header-desktop {
+  grid-column: 2 / 3;
+  text-align: right;
+  align-self: end;
+  color: var(--mid-blue);
+  padding: 0 32px 14px 0;
+}
+
+.header-desktop .accent {
+  color: var(--accent-color);
+  margin: 0 8px;
+}
+
+#page-title {
+  letter-spacing: 1.5px;
+}
+
+/* ---SIDENAV--- */
+
+#home {
+  display: block; /* Allows link (which is an inline element normally) to have top & bottom padding */
+  color: var(--accent-color);
+  text-decoration: none;
+  padding: 12px 12px;
+}
+
+#home i {
+  font-size: 0.9rem;
+}
+
+#home:hover .outer-arrow {
+  animation: arrowFlash 1500ms forwards;
+  animation-delay: 200ms;
+  animation-iteration-count: infinite;
+}
+
+#home:hover .middle-arrow {
+  animation: arrowFlash 1500ms forwards;
+  animation-delay: 100ms;
+  animation-iteration-count: infinite;
+}
+
+#home:hover .inner-arrow {
+  animation: arrowFlash 1500ms forwards;
+  animation-iteration-count: infinite;
+}
+
+.sidenav {
+  grid-row: 1 / 2; /* Row starts at first row and stops at 2nd row, but overflows to show content. This allows sticky header to work. */
+  margin-top: 52px; /* Margin from top so it scrolls a titch and then sticks */
+  text-align: center;
+  position: sticky;
+  top: 0px;
+}
+
+.sidenav hr {
+  width: calc(100% - 48px);
+  margin: 0 auto;
+  height: 1px;
+  border: none;
+  background-color: var(--accent-color);
+}
+
+.sidenav .links {
+  display: block;
+  color: var(--mid-blue);
+  background-color: var(--charcoal-gray);
+  padding: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  letter-spacing: 1.2px;
+  margin: 24px;
+  border-radius: 5px;
+  transition: background-color 600ms, color 600ms; /* Links slowly change color on hover */
+}
+
+.sidenav .links:hover {
+  background-color: white;
+  color: var(--charcoal-gray);
+}
+
+/* ---MAIN CONTENT--- */
+
+main {
+  grid-column: 2 / 3; /* Without this explicitly set, it starts in nav area */
+  grid-row: 2 / -1; /* Without this, when open modal on mobile, main goes up to top row */
+  background-color: white;
+  margin: 0 32px 32px 0;
+  border-radius: 5px;
+  padding: 16px 16px 150px 16px;
+}
+/* Above styles are for main white box which contains the text  */
+
+#main-text {
+  max-width: 800px;
+  /* Added max-width in order to delete the huge amounts of padding in the main element, so scaling it down works much better. */
+  margin: 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+#main-text a {
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+#main-text a:hover {
+  color: hsl(20deg, 100%, 50%);
+  text-decoration: none;
+}
+
+p span,
+ul span {
+  color: var(--dark-blue);
+  background-color: var(--light-blue-quote);
+  border-radius: 5px;
+  padding: 2px 6px;
+  font-weight: bold;
+}
+
+ul {
+  list-style: none;
+  margin: 24px 0;
+}
+
+ul li {
+  padding: 0 32px;
+}
+
+#main-text h2 {
+  margin: 48px 0 20px;
+  color: white;
+  background-color: var(--dark-blue);
+  padding: 0 16px;
+  font-weight: bold;
+  border-radius: 5px;
+} /* Added the id, because these styles were affecting the home page h2 styles when it was only set to "main h2" */
+
+#main-text h2:first-of-type {
+  margin-top: 24px;
+}
+
+#main-text h4 {
+  color: var(--accent-color);
+  font-weight: 400;
+  border-bottom: 1px solid var(--accent-color);
+  margin-bottom: 16px;
+  font-weight: bold;
+  /* width: fit-content; So underline only goes the length of the words */
+}
+
+#main-text h5 {
+  color: var(--accent-color);
+}
+
+#main-text p,
+#main-text .quote {
+  margin-bottom: 18px;
+}
+
+#main-text .quote {
+  background-color: var(--light-blue-quote);
+  color: var(--dark-blue);
+  padding: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+#main-text .quote p:last-child {
+  margin: 0;
+}
+/* So no big margin showing inside the quote box */
+
+#main-text .box {
+  background-color: var(--accent-color);
+  min-width: 200px;
+  width: 30%;
+  height: 2rem;
+  margin: 24px auto;
+} /* Used on relative positioning section on layout page */
+
+#main-text .relative {
+  position: relative;
+  left: 40px;
+  padding-left: 8px;
+  color: white;
+  font-weight: bold;
+}
+
+#main-text .inline-relative {
+  position: relative;
+  bottom: 5px;
+}
+
+#main-text .accent-span {
+  background-color: var(--accent-color);
+  color: white;
+  font-weight: normal;
+  padding: 4px;
+  border-radius: 5px;
+}
+
+/* ---IMAGES--- */
+
+/* CSS reset already sets display:block and width:100% */
+
+.img-black {
+  background: #1e1e1e;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 16px;
+}
+
+.center-img {
+  margin: 0 auto;
+}
+
+.quarter-width {
+  width: 300px;
+}
+
+.half-width {
+  width: 400px;
+}
+
+.width-500 {
+  width: 500px;
+}
+
+.full-width {
+  width: 600px; /* Same max-width as main-text */
+}
+
+/* ---RESPONSIVE--- */
+#responsive-boxes {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding-bottom: 24px;
+}
+
+#responsive-boxes div {
+  height: 200px;
+  width: 200px;
+  background-color: var(--accent-color);
+  border-radius: 5px;
+}
+
+.responsive-clamp p {
+  margin: 0; /* This resets margin to 0, since it was inheriting 18px from "main p" */
+}
+
+.responsive-clamp {
+  color: var(--dark-blue);
+  font-weight: bold;
+  padding: 8px;
+  margin: 0 auto;
+  margin-bottom: 18px;
+  border-radius: 5px;
+  background-color: var(--light-blue-quote);
+  width: clamp(500px, 80%, 700px);
+  max-width: 100%;
+}
+
+/** GRID EXAMPLE **/
+
+.grid-example {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 8px;
+  background: var(--light-blue-quote);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.grid-fluid {
+  background: var(--light-blue-quote);
+  padding: 16px;
+  margin-bottom: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 16px;
+}
+
+.grid-item {
+  background: var(--dark-blue);
+  padding: 4px 8px;
+  color: white;
+  height: 150px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  font-weight: bold;
+}
+
+.grid-item.box-1 {
+  grid-column: 1 / 3;
+}
+
+.grid-item.box-2 {
+  grid-column: 3 / 4;
+  grid-row: 1 / 3;
+  height: 100%; /* Without this, box is constrained to height of grid-item and won't fill multiple rows */
+}
+
+.grid-item.box-3 {
+  grid-column: 2 / 3;
+}
+
+.grid-item .no-break {
+  white-space: nowrap;
+  background-color: var(--dark-blue);
+  color: white;
+  padding: 0; /* Is inheriting from p span, so this resets */
+}
+
+/* ---ANIMATIONS--- */
+
+@keyframes arrowFlash {
+  0% {
+    opacity: 1;
+  }
+  5% {
+    opacity: 0;
+  }
+}
+
+/* ---MODAL--- */
+
+.fa-bars {
+  font-size: 1.3rem;
+  align-self: center;
+  padding: 4px;
+} /* Hamburger menu */
+
+.modal-background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: var(--darkest-blue);
+  opacity: 60%;
+}
+
+/* ---MEDIA QUERIES--- */
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 16px;
+  }
+} /* Sets smooth scrolling for all pages and adds padding above the header */
+
+/* Desktop Settings */
+@media (min-width: 50rem) {
+  .hidden {
+    opacity: 0;
+  } /* Hides ham menu & X-close button */
+
+  .no-display-desktop {
+    display: none;
+  }
+}
+
+/* Mobile Settings */
+@media (max-width: 50rem) {
+  html {
+    scroll-padding-top: 72px;
+  }
+
+  /* No background scroll on mobile  */
+  .no-scroll {
+    overflow: hidden;
+  }
+
+  /* Gets rid of grid column where sidenav used to be and makes top row smaller */
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 56px auto;
+  }
+
+  .background-white {
+    background-color: white;
+  }
+
+  /* Home page, when small enough has no margin and no border radius */
+  #home-main {
+    width: 100%;
+    margin: 0;
+    border-radius: revert;
+  }
+
+  .header-mobile {
+    position: fixed;
+    width: 100%;
+    color: var(--mid-blue);
+    display: flex;
+    justify-content: space-between;
+    z-index: 2; /* Goes in front of transparent background div & in front of sidenav */
+    background-color: black;
+    padding: 13px 16px;
+  }
+
+  .header-title {
+    align-self: center;
+  }
+
+  .sidenav {
+    position: fixed;
+    top: -100vh;
+    width: min(
+      100%,
+      var(--modal-width)
+    ); /* Chooses whichever is smaller, so width won't exceed 100% on small mobile screens */
+    background-color: black;
+    margin: 0; /* Reset */
+    padding-top: 55px; /* Keeps sidenav below header */
+    z-index: 1; /* Goes in front of transparent background div */
+  } /* Main sidenav is off screen on smaller window */
+
+  .sidenav hr {
+    width: calc(100% - 32px);
+  } /* Change width of hr for mobile to match length of links */
+
+  .sidenav .links {
+    margin: 16px;
+  } /* Smaller margin on mobile */
+
+  .sidenav-open {
+    position: fixed;
+    top: 0;
+    transition: top 800ms; /* This transition only works when click sidenav open, then this class disappears automatically when close */
+  }
+
+  .sidenav-closing {
+    transition: top 600ms; /* This transition is on setTimeout, so it triggers after sidenav-open closes, allowing the closing transition to occur */
+  }
+
+  main {
+    margin: 0;
+    border-radius: 0;
+  }
+
+  #main-text h2:first-of-type {
+    margin-top: 0;
+  }
+
+  #main-text h2 {
+    margin: 24px 0 16px;
+  } /* Resets margin to be smaller for mobile */
+
+  .is-blurred {
+    filter: blur(2px);
+  }
+
+  .no-display-mobile {
+    display: none;
+  } /* Header toggles display on click, only if on mobile size. */
+
+  .modal-background-open {
+    display: block;
+  }
+
+  /* Scrollbar only on landscape & mobile  */
+  @media screen and (orientation: landscape) {
+    .sidenav {
+      height: 100%;
+      overflow-y: scroll;
+    }
+    .sidenav::-webkit-scrollbar {
+      background-color: black;
+    }
+    .sidenav::-webkit-scrollbar-thumb {
+      background-color: var(--medium-dark-gray-15);
+    }
+  }
+}
+
+@media (max-width: 30rem) {
+  .no-display-mini {
+    display: none;
+  } /* Gets rid of second responsive box on responsive page */
+}
