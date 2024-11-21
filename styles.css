@@ -77,14 +77,16 @@ body {
 
 img {
   border-radius: 8px 8px 0 0;
+  background-color: white;
 }
 
 .wrapper {
   max-width: 1400px;
-  margin: 80px auto;
+  margin: 0 auto;
   font-family: "Open Sans";
   padding: 16px;
 }
+
 .name {
   font-weight: 800;
   font-size: 3rem;
@@ -100,14 +102,14 @@ img {
 }
 
 .cardWrapper {
-  margin: 24px auto;
+  margin: 24px auto 48px auto;
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(auto-fill, minmax(min(350px, 100%), 1fr));
 }
 
 .card {
-  background-color: white;
+  background-color: black;
   text-align: center;
   color: white;
   margin: 16px;
@@ -117,9 +119,19 @@ img {
   box-shadow: 1px 3px 9px rgba(0, 0, 0, 0.1), 1px 3px 9px rgba(0, 0, 0, 0.03);
 }
 
-.cardTitle {
-  background-color: black;
+.cardText {
   padding: 8px 16px;
-  font-weight: 600;
   border-radius: 0 0 8px 8px;
+  margin: 16px;
+}
+
+.cardTitle {
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+
+.cardDescription {
+  text-align: left;
+  margin: 16px 0;
 }
