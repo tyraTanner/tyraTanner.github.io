@@ -99,6 +99,7 @@ html {
 body {
   color: var(--charcoal-gray);
   font-family: "Montserrat", sans-serif;
+  font-weight: 400;
   line-height: 1.4;
 }
 

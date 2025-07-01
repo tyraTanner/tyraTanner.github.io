@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Montserrat:wght@300;600;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
     <link
@@ -58,7 +58,6 @@
         <a href="#async" class="links">Asynchronous JavaScript</a>
         <a href="#regex" class="links">Regular Expressions</a>
         <a href="#modules" class="links">Modules</a>
-        <a href="#commandLine" class="links">Command Line</a>
         <!-- Links class allows mobile links to close modal -->
       </nav>
 
@@ -71,14 +70,14 @@
           <div class="h2-container">
             <h2 id="data-types">Data Types</h2>
           </div>
-          <p>Meet the three main JS Data Types:</p>
+          <p>Three of the primitive data types in JS are:</p>
           <ul>
             <li>Boolean: True or False</li>
             <li>String: "Hello World"</li>
             <li>Numbers: 123...</li>
           </ul>
 
-          <p>The keyword "typeof" can tell you the data type in use.</p>
+          <p>The keyword "typeof" shows the data type in use.</p>
           <pre><code class="language-javascript">typeof (42)
 "number"
 typeof (true)
@@ -86,15 +85,16 @@ typeof (true)
 typeof ("Hello")
 "string"</code></pre>
           <p>
-            Note there are more data types, namely "undefined," "null," "symbol"
-            (outdated from ES2015), and a new one as of ES2020: BigInt, for
-            numbers too large to be handled by the "number" data type.
+            Note there are more primitive data types, namely "undefined,"
+            "null," "symbol" (outdated from ES2015), and a new one as of ES2020:
+            BigInt, for numbers too large to be handled by the "number" data
+            type.
           </p>
           <p>
             Also, JS has <em>dynamic typing</em>, which means it automatically
-            assigns the data type to the value within a variable. Note that not
-            all programming languages do this. Some require the data type to be
-            declared along with the value of a variable.
+            assigns the data type. Note that not all programming languages do
+            this. Some require the data type to be declared along with the value
+            of a variable.
           </p>
         </div>
         <div class="text-para">
@@ -104,8 +104,7 @@ typeof ("Hello")
           <h4>Concatenation</h4>
           <p>
             Strings can be added together through <em>concatenation</em>. For
-            example, "3" + "5" would become 35, not 8, because they are in
-            quotes, hence, strings.
+            example, "3" + "5" would become 35, not 8, because they are strings.
           </p>
           <p>Find the length of a string with the <em>.length</em> property.</p>
           <h4>Slice</h4>
@@ -113,9 +112,11 @@ typeof ("Hello")
           <pre><code class="language-javascript">let statement = "not fun"
 console.log(statement.slice(4, 7)); // "fun"</code></pre>
           <p>
-            Remember counting starts at 0. So in the above slice function, the
-            characters in position 4, up to but not including 7 will be
-            selected. Did you say "not fun"? I think you meant "fun".
+            Remember: JavaScript uses zero-based indexing, which means the first
+            character is at index 0. This shows how slicing can extract the
+            substring "fun" from "not fun". The letter "f" is at index 4, and
+            the slice function will proceed up to but not include the character
+            at index position 7.
           </p>
           <h4>String Methods</h4>
           <p>
@@ -133,8 +134,8 @@ console.log(statement.slice(4, 7)); // "fun"</code></pre>
           </p>
           <p>
             Consider the following lines of code, both of which produce the same
-            output, but the second line (the template literal) is much easier to
-            write without all of the concatenation and spaces.
+            output, but the second line (the template literal) is generally
+            easier to read and write.
           </p>
           <pre
             class="language-javascript"
@@ -156,11 +157,9 @@ it.`;</code></pre>
             <h2 id="variables">Variables</h2>
           </div>
           <p>
-            Variables are arrows that point to a value. You can reassign value
-            (point to a different value) by simply re-declaring the variable,
-            for example, let a = 5, then a = 4. Whatever is assigned later will
-            be the variable's value. Consider the code below. It shows the logic
-            behind changing which value a variable points at.
+            Variables are like arrows that point to a value. A variable can be
+            reassigned to point to a different value by re-declaring it. In the
+            following code, the variables "a" and "b" are both reassigned.
           </p>
           <pre class="language-javascript"><code>let a = "4";
 let b = "9";
@@ -170,12 +169,10 @@ b = c;
 console.log(a) // 9
 console.log(b) // 4</code></pre>
           <p>
-            You can declare a variable with let and not assign a value to it:
+            A variable can be declared with let without being assigned a value:
             let firstName; It has no value, but one can be assigned later.
           </p>
-          <p>
-            With "const," however, you cannot assign a variable without a value.
-          </p>
+          <p>With "const," however, a variable must be assigned a value.</p>
           <p>
             Variable names can only contain letters, numbers, underscores, or
             dollar signs.
@@ -186,25 +183,25 @@ console.log(b) // 4</code></pre>
             <h2 id="math-express">Mathematical Expressions</h2>
           </div>
           <p>
-            Mathematical expressions in Javascript copy the same order of
-            operations used elsewhere, but even if you already know that in the
-            equation 3 + 2 * 6, the 2 * 6 will be multiplied before the 3 is
-            added, it is preferred you add parentheses to make your statements
-            abundantly clear. Hence, 3 + (2 * 6).
+            Mathematical expressions in JavaScript follow the same order of
+            operations as standard arithmetic. Even when the order of operations
+            is familiar, it is recommended to add parentheses to make
+            expressions abundantly clear. For example, writing 3 + (2 * 6)
+            instead of 3 + 2 * 6 improves readability and reduces ambiguity.
+            Readability and clarity are highly valued in professional code.
           </p>
           <h4>Modulo</h4>
           <p>
-            Meet modulo (%), the remainder operator. So, 8 % 4 is 0, because
-            there is no remainder when divided, while 8 % 3 is 2, because the
-            remainder is 2.
+            Modulo (%) is the remainder operator. For example, 8 % 4 is 0,
+            because there is no remainder. For the operation 8 % 3, the return
+            values is 2, because 3 goes into 8 twice, leaving a remainder of 2.
           </p>
-          <h4>Increment & Decrement Expression</h4>
+          <h4>Shorthand Increment & Decrement Expression</h4>
           <p>X++ will increase the value of X by 1.</p>
           <p>X-- will decrease the value of X by 1.</p>
           <p>
-            Shorthand example: Instead of x = x + 2, you can simply type x += 2,
-            meaning x has been incremented up by 2. This works for all
-            operators, -=, /=, *=.
+            For example, x += 2 is the shorthand for x = x + 2. The shorthand
+            works for all operators, -=, /=, *=.
           </p>
           <h4>Math Properties</h4>
           <p>
@@ -220,15 +217,15 @@ console.log(b) // 4</code></pre>
             nearest whole number.
           </p>
           <p>
-            <span class="js-font">Math.random()</span> will round according to
-            regular rounding rules.
+            <span class="js-font">Math.round()</span> will round according to
+            standard arithmetic rounding rules.
           </p>
           <h4>Comparators</h4>
           <p>
-            Use three equal signs === to compare equality, including data type.
-            So a string "1" and the number 1 will not be equal. However, if you
-            use only two equal signs == to compare, then it will not check for
-            data types and will say the string "1" and the number 1 are equal.
+            Three equal signs === compare strict equality, including data type.
+            Note that the string "1" and the number 1 will not be strictly
+            equal. However, two equal signs == does not check for data types,
+            and the string "1" and the number 1 will be equal.
           </p>
           <p>Not equal: !==</p>
           <p>And: &&</p>
@@ -249,7 +246,7 @@ console.log (0 || null); // null
 // Chooses last falsy value if no truthy one exists</code></pre>
           <p>
             All values are considered truthy values in JS, except for false, 0,
-            -0, On, "" (empty string), null, undefined, and Nan.
+            -0, "" (empty string), null, undefined, and NaN.
           </p>
           <p>
             The And operator short circuits as well, but opposite of the Or
@@ -257,8 +254,7 @@ console.log (0 || null); // null
             operator must be true in order for the statement to be true, which
             means that as soon as JS finds a falsy value in a statement with &&,
             it will automatically return the falsy value and stop evaluating the
-            statement. Basically, it got offended that you were telling it lies,
-            and it just spat that falsy stuff back at you.
+            statement.
           </p>
           <pre class="language-javascript"><code>console.log(0 && 5);
 // Returns 0, it saw a falsy value and stopped evaluating
@@ -271,8 +267,9 @@ console.log(7 && 9);
           <p>
             The Nullish Coalescing Operator works exactly like the || operator,
             except it only considers <em>null</em> and <em>undefined</em> as
-            falsy, aka nullish. That means that if you log 0 ?? 9, you will get
-            0 returned, since it's truthy in this situation.
+            falsy, aka nullish. It's desirable when one wants 0 to be considered
+            truthy. For example, 0 ?? 9 will return 0, since it's truthy in this
+            situation.
           </p>
         </div>
         <div class="text-para">
@@ -282,7 +279,7 @@ console.log(7 && 9);
           <h4>While Loops</h4>
           <p>
             While loops are most useful when used with a condition. While a
-            condition is true, then execute the code.
+            condition is true, then the code will be executed.
           </p>
           <pre class="language-javascript"><code>let n = 0;
   while (n &lt; 3) {
@@ -290,16 +287,14 @@ console.log(7 && 9);
 }
 console.log(n); // 3</code></pre>
           <p>
-            While loops can cause infinite loops, which will kill your page.
-            Best to only use them when you want something to run
-            <em>only</em> when a certain condition is true. So for the above
-            code, which it iterating multiple times through the code, it's
-            actually best to use a For loop.
+            While loops can cause infinite loops, which can stall the browser.
+            To prevent infinite loops, it is vital to write conditions that
+            eventually become untrue in order to exit the loop.
           </p>
           <h4>For Loops</h4>
           <p>
-            For loops are largely preferred over While loops. They work well for
-            iterating through code, and they are a bit less clunky to look at.
+            For loops work well for iterating through code and are a bit more
+            readable the while loops.
           </p>
           <pre
             class="language-javascript"
@@ -313,8 +308,8 @@ The number is 2
 The number is 3 
 */</code></pre>
           <p>
-            It looped through the code four times, executing the command to
-            print the current number.
+            The above code looped four times, executing the command to print the
+            current number.
           </p>
         </div>
         <div class="text-para">
@@ -322,7 +317,7 @@ The number is 3
             <h2 id="functions">Functions</h2>
           </div>
           <h4>Function Declarations</h4>
-          <p>Function declarations have this format:</p>
+          <p>Function declarations follow this format:</p>
           <pre
             class="language-javascript"
           ><code>function nameOfFunction (a, b) {
@@ -350,9 +345,11 @@ The number is 3
             class="language-javascript"
           ><code>const nameOfFunction = (a, b) => a + b;</code></pre>
           <p>
-            Best used for one liners. If on multiple lines, the
-            <em>return</em> keyword AND curly brackets are required. Is not
-            hoisted and does not have use of the <em>arguments</em> keyword.
+            Arrow functions are best used for one liners. If the function spans
+            multiple lines, the
+            <em>return</em> keyword AND curly brackets are required. Arrow
+            functions are not hoisted and do not have use of the
+            <em>arguments</em> keyword.
           </p>
           <h4>Higher Order Functions</h4>
           <p>
@@ -374,10 +371,6 @@ function calculator(num1, num2, operator) {
 }
 
 calculator (20, 5, add); // 25</code></pre>
-          <p>
-            <em>Note:</em> Notice that functions called as arguments do not need
-            to be followed by parentheses.
-          </p>
           <h4>Callback Functions</h4>
           <p>Callback functions are inside higher order functions.</p>
           <pre class="language-javascript"><code>function whisperVoice(str) {
@@ -418,15 +411,11 @@ transformVoice("I said I was sorry", angryVoice);
 const greeting1 = greet("Hello");
 const greeting2 = greet("Sup");
 greeting1("Girl"); // Hello Girl
-greeting2("Boy"); // Sup Boy
-
-// Another way to write it without saving a variable
-greet("Hello")("Girl");
-greet("Sup")("Boy");</code></pre>
+greeting2("Boy"); // Sup Boy</code></pre>
           <h4>Default Parameters</h4>
           <p>
-            Default parameters allow you to set a default value to the parameter
-            in case the user doesn't put a value in.
+            Default parameters allow for a default value to be used if an
+            argument isn't provided.
           </p>
           <pre
             class="language-javascript"
@@ -439,14 +428,14 @@ createBooking("DC23");
           <h4>Passing Arguments: Reference or Primitive</h4>
           <p>Reference values are complex values like objects and arrays.</p>
           <p>
-            Primitive values are the primitive data types, likes strings,
+            Primitive values are the primitive data types, such as strings,
             numbers, etc.
           </p>
           <p>
-            It's important to know they act differently in memory. Complex
-            values are referenced, meaning they are pointing at the value in the
-            memory heap. Primitive values are essentially copied and the copied
-            value is passed.
+            Reference values and primitive values act differently in memory.
+            Reference values are referenced, which means they point to the value
+            in the memory heap. Primitive values are essentially copied, and the
+            copied value is passed.
           </p>
           <p>
             "Pass-by-value creates a new space in memory and makes a copy of a
@@ -461,9 +450,8 @@ createBooking("DC23");
           </p>
           <h4>IIFE: Immediately Invoked Function Expressions</h4>
           <p>
-            So say you want a function to be immediately called and NOT be saved
-            to a variable at all, then the IIFE is your way to go. JS will only
-            consider the function as expression if you wrap it in parentheses.
+            An IIFE is a function that is immediately invoked when the code is
+            executed and is not hoisted or saved to a variable.
           </p>
           <pre class="language-javascript"><code>(function () {
   console.log("blah");
@@ -580,17 +568,15 @@ console.log(power(2, 5)); //32</code></pre>
             <li class="js-font">.sort()</li>
           </ul>
           <p>
-            One of the most used methods is the .forEach() method, which loops
-            over an array. It's easy to keep track of the index on a forEach
-            loop. Unlike the for...of, you cannot use "break" or "continue" in a
-            forEach loop.
+            One of the most used methods is the forEach method, which loops over
+            an array. It's easy to keep track of the index on a forEach loop.
           </p>
           <h4>Methods that Return a Boolean</h4>
           <p>
             Methods that return a Boolean value are useful for testing certain
             conditions.
           </p>
-          <p>Check out these 3 methods that return a Boolean:</p>
+          <p>The following 3 methods return a Boolean:</p>
           <pre
             class="language-javascript"
           ><code>const arr = [1, 84, 1212, 489, 12];
@@ -606,8 +592,8 @@ arr.every(el => el > 50); //true
 </code></pre>
           <h4>Map Method</h4>
           <p>
-            The map method loops over the array like the forEach method, but has
-            an important distinction. While forEach returns each item
+            The map method loops over an array similar to the forEach method,
+            but has an important distinction. While forEach returns each item
             separately, the map method returns a new array with all of the
             transformed elements.
           </p>
@@ -615,8 +601,9 @@ arr.every(el => el > 50); //true
 console.log(array.map(el => el * 2)); // [2, 4, 6, 8]</code></pre>
           <h4>Reduce Method</h4>
           <p>
-            You know how For Loops can be used to accumulate a running total
-            from an array?
+            The following code shows a for loop being used to create a running
+            total of all the numbers from an array. The same can be done with
+            the reduce method.
           </p>
           <pre
             class="language-javascript"
@@ -628,8 +615,9 @@ for (let i = 0; i &lt; arr.length; i++) {
 }
 console.log(count); // 45</code></pre>
           <p>
-            The reduce method makes the above a lot easier. The first parameter
-            in the reduce callback function is the running total. Check it out:
+            The reduce method can also accumulate total numbers from an array,
+            and it can do so in even fewer lines of code. The first parameter in
+            the reduce callback function is the running total.
           </p>
           <pre
             class="language-javascript"
@@ -666,10 +654,10 @@ const max = arr.reduce((acc, el) => acc > el ? acc : el);</code></pre>
             element.
           </p>
           <p>
-            You can give reduce an intial value to the accumulator parameter, in
-            which case it will return the accumulator value after the first
-            loop. In the following, the initial value is set to 10. Reduce loops
-            through the array, can't find a higher number, and returns 10.
+            If an intial value is given to the accumulator parameter, it will
+            return the accumulator value after the first loop. In the following,
+            the initial value is set to 10. Reduce loops through the array,
+            can't find a higher number, and returns 10.
           </p>
           <pre
             class="language-javascript"
@@ -806,10 +794,6 @@ Object.keys(restaurant); // ['name', 'Burger maker skills']</code></pre>
             manner as arrays. However, there are ways to loop through them.
           </p>
           <p>
-            Like an array, use a for loop or for...of loop, but then you need to
-            specify what part of the object you want to loop through.
-          </p>
-          <p>
             <span class="js-font">Object.keys(objectName)</span> will loop
             through the keys.
           </p>
@@ -837,8 +821,8 @@ Object.keys(restaurant); // ['name', 'Burger maker skills']</code></pre>
           <pre class="language-javascript"><code>money.addDeposit = 400;
 money.deposits; // [200, 300, 400]</code></pre>
           <p>
-            Notice the lack of a function call. The setter allows you to set
-            property values without calling the method. The setter calls the
+            Notice the lack of a function call. The setter allows for property
+            values to be set without calling the method. The setter calls the
             method behind the scenes.
           </p>
           <p>
@@ -884,12 +868,10 @@ bob.calcAge(); // Bob is 50 years old.</code></pre>
           <ul>
             <li>Classes are executed in strict mode.</li>
             <li>
-              Classes are first-class. You can pass them into functions and
-              return them from functions.
+              Classes are first-class. They can be passed into functions and
+              returned from functions.
             </li>
-            <li>
-              Classes are NOT hoisted, even if you use a function declaration.
-            </li>
+            <li>Classes are not hoisted.</li>
           </ul>
         </div>
         <div class="text-para">
@@ -939,32 +921,26 @@ console.log(vegetable.apples); // 12</code></pre>
             for {} objects! (But we shouldn’t, unless we’re pranking our
             colleagues.)
           </p>
-          <p>
-            You probably won’t use prototypes much directly in practice.
-            However, they are fundamental to JavaScript objects, so it is handy
-            to understand their underlying mechanics. Some advanced JavaScript
-            features, including classes, can be expressed in terms of
-            prototypes." (Dan Abramov, Just JavaScript)
-          </p>
           <h4 id="proto-inheritance">Prototypal Inheritance</h4>
           <p>
-            There's something called the Object prototype. You can see it if you
-            console.log(Object.prototype). There's also a String.prototype and
-            an Array.prototype.
+            The Object prototype can be seen by logging the following to the
+            console: console.log(Object.prototype). The same can be done with
+            the String.prototype and Array.prototype.
           </p>
           <p>
-            These prototypes allow you to use all of their methods on any old
-            string or array, like using string.length or array.map. We usually
-            don't think much about how those prototypes are there, making the
-            magic happen, but it's important to understand that our strings and
-            arrays are <em>inheriting</em> the methods from these prototypes
-            through <strong>prototypal inheritance</strong>.
+            Prototypes make it possible to use all of the methods on any string
+            or array, like using string.length or array.map. Strings and arrays
+            <em>inherit</em> methods from these prototypes through
+            <strong>prototypal inheritance</strong>.
           </p>
           <p>
             When it comes to objects, and specifially to Constructor functions,
             understanding prototypal inheritance is essential.
           </p>
-          <p>Say you have a Constructor function like so:</p>
+          <p>
+            In the following Constructor function, notice that the log of the
+            "tyra" object has a prototype listed, the Object prototype.
+          </p>
           <pre
             class="language-javascript"
           ><code>const Person = function (firstName, birthYear) {
@@ -978,13 +954,7 @@ birthYear: 1981
 firstName: "Tyra"
 [[Prototype]]: Object */</code></pre>
           <p>
-            So I've got my Constructor function, which makes a new Person
-            object. Notice how the log of the "tyra" object has a prototype
-            listed, the Object prototype.
-          </p>
-          <p>Now say I want to add a method to "tyra".</p>
-          <p>
-            I can do that easily enough by adding the method to the constructor
+            Add a method to "tyra" by adding the method to the constructor
             function like so:
           </p>
           <pre
@@ -996,22 +966,22 @@ firstName: "Tyra"
   });
 };</code></pre>
           <p>
-            <strong>BUT... this is a bad idea.</strong> Adding methods inside
-            Constructor functions means that every time a new instance is
+            <strong>However! This is bad practice!</strong> Adding methods
+            inside Constructor functions means that every time a new instance is
             created (a new Person object), it will have its own copy of the
-            exact same method. Say you have hundreds/thousands of users. Making
-            the computer retain thousands of copies of the same method is bad
-            for performance.
+            exact same method. If there are hundreds/thousands of users, the
+            computer must retain thousands of copies of the same method, which
+            is inefficient and potentially bad for performance.
           </p>
           <p><strong>The solution:</strong></p>
           <p>
-            Make <em>one</em> method that <em>all</em> the instances can access.
+            Make <em>one</em> method that <em>all</em> instances can access.
             (Classes also do this.)
           </p>
           <p>
-            To do that, add the method to the Person prototype. Every
-            Constructor function has its own prototype property. The method will
-            be saved there, and that way all of the instances can still use it.
+            To do so, add the method to the Person prototype. Every Constructor
+            function has its own prototype property. The method will be saved
+            there, and that way all of the instances can still use it.
           </p>
           <pre
             class="language-javascript"
@@ -1025,9 +995,9 @@ console.log(Person.prototype);
 calcAge: ƒ ()
 constructor: ƒ (firstName, birthYear) */</code></pre>
           <p>
-            Another thing to know about Constructor functions. You aren't
-            allowed to add properties to them like normal objects. You must add
-            them to the prototype:
+            Adding properties to Constructor functions is a little different
+            than assigning properties on regular objects. New properties must be
+            added to the prototype:
           </p>
           <pre
             class="language-javascript"
@@ -1048,12 +1018,12 @@ console.log(tyra.language); // English</code></pre>
           <h4>Scripts Tags in HTML</h4>
           <p>Best practice for Script tags:</p>
           <p>
-            Put script tags <em>last</em> in your html, just before your closing
+            Place script tags <em>last</em> in the html, just before the closing
             &lt;/body&gt; tag. There are a few reasons for this.
           </p>
           <ul>
             <li>
-              One reason is that some of your code might be intended to change
+              One reason is that some of the code might be intended to change
               the HTML elements on the page, but if the script tag is in the
               &lt;head&gt; tag, then the browser reads the script before the
               HTML. It will not be able to execute the code. It's as if the HTML
@@ -1138,7 +1108,6 @@ console.log(document.querySelectorAll("ul"));
           <pre
             class="language-javascript"
           ><code>document.querySelector("h1").classList.add("new-class");</code></pre>
-          <p>You can also remove and toggle classes.</p>
           <p>Change an attribute:</p>
           <pre
             class="language-javascript"
@@ -1150,9 +1119,8 @@ console.log(document.querySelectorAll("ul"));
           </p>
           <h4>Creating Elements in the DOM</h4>
           <p>
-            You can create elements in the DOM, but you must also ADD them to
-            the document as well. There are a number of ways to add elements,
-            using the methods after, before, prepend, append, etc.
+            Some of the methods to add elements to the DOM include the
+            following: after, before, prepend, and append.
           </p>
           <pre
             class="language-javascript"
@@ -1169,8 +1137,8 @@ document.querySelector(".create-el").after(subTitle);</code></pre>
           </p>
           <h4>Getting & Setting Attributes</h4>
           <p>
-            You can read and set attributes to HTML elements. Notice the HTML
-            image tag below.
+            Below are ways to read and set attributes to HTML elements. Notice
+            the HTML image tag below.
           </p>
           <pre class="language-html"><code>&lt;img 
   src="img/logo.png"
@@ -1200,11 +1168,10 @@ console.log(logo.getAttribute("company")); // Bankist</code></pre>
           ><code>logo.alt = "Beautiful minimalist logo";
 console.log(logo.alt); // Beautiful minimalist logo</code></pre>
           <p>
-            <strong>Data attributes</strong> are pretty cool. They are custom
-            attributes that allow you to create your own attributes and store
-            any kind of data within them. It must start with data- (including
-            the dash). The last attribute in the img tag above is a data-
-            attribute, data-version-number. These custom attributes can be
+            <strong>Data attributes</strong> are custom attributes that can
+            store data within them. Data attributes must start with data-
+            (including the dash). The last attribute in the img tag above is a
+            data- attribute, data-version-number. These custom attributes can be
             accessed through the dataset object in JavaScript, but importantly,
             the attribute name must be converted to camelCase.
           </p>
@@ -1281,8 +1248,7 @@ console.log(logo.getAttribute("src")); // Returns the relative url</code></pre>
             A JS engine can only process one thing, or package, at a time. It is
             a single-threaded engine, and in order to keep all the packages in
             order, it uses the call stack. The call stack works on the LIFO
-            principle: <strong>Last In First Out</strong>. Think of it like the
-            last seats on the airplane. They seat you first, you get off last.
+            principle: <strong>Last In First Out</strong>.
           </p>
           <p>
             What's this about packages? A package, or
@@ -1307,18 +1273,16 @@ console.log(logo.getAttribute("src")); // Returns the relative url</code></pre>
             >).
           </p>
           <p>
-            Stacks have a limit of how much they can hold. You can
-            <strong>overflow a stack</strong> by exceeding that limit, like in
-            the case of a recursive function that calls itself forever, without
-            an exit. It will throw an error, saying maximum call stack size
-            exceeded. Kind of reminds me of a while loop that forms a infinite
-            loop, but it's a call stack that forever calls the same function.
+            Stacks have a limit of how much they can hold. Stacks can
+            <strong>overflow</strong> by exceeding the limit, like in the case
+            of a recursive function that calls itself forever, without an exit.
+            It will throw an error, saying maximum call stack size exceeded.
           </p>
           <h4 id="hoisting">Hoisting</h4>
           <p>
-            So remember the creation phase when a JS engine reads through the
-            code initially and saves some stuff. Thing is, it only saves
-            <em>some</em> stuff, and that some ends up being important.
+            When the JS engine reads through the code initially during the
+            creation phase, it saves some of the data from its first read
+            through.
           </p>
           <pre class="language-javascript"><code>hello();
 
@@ -1328,33 +1292,23 @@ function hello() {
 // Hello</code></pre>
           <p>
             Function declarations are saved, making it possible to
-            <em>call</em> a function in your code before the function is
-            declared. The code above will have no problem running, because
-            function declarations are already saved, or
-            <strong>hoisted</strong>, before the code executes.
+            <em>call</em> a function before the function is declared. The code
+            above will have no problem running, because function declarations
+            are already saved, or <strong>hoisted</strong>, before the code
+            executes.
           </p>
           <p>
             Function expressions and arrow functions are different. They are
-            saved as variables in the creation phase, and guess what? Only
-            variable <em>names</em> are saved in this phase, and the value is
-            set to uninitialized, which is so much like saying it isn't hoisted,
-            that we are just going to say variables are not hoisted in any
-            meaningful way. You cannot use them before they are declared. (By
-            the way, we're talking about <em>let</em> and <em>const</em> here,
-            because <em>var</em> has different rules and you shouldn't use it
-            anyway.) For <em>let</em> and <em>const</em>, you will get the
-            following error:
+            saved as variables in the creation phase, but only variable
+            <em>names</em> are saved in this phase, and the value is set to
+            uninitialized, which means they cannot be used before they are
+            declared. For <em>let</em> and <em>const</em> (var has different
+            rules), an error will occur if attempting to access the value of the
+            variable before the code is executed.
           </p>
           <pre class="language-javascript"><code>hello();
 const hello = function () {console.log("Hello")};
 // Uncaught ReferenceError: Cannot access 'hello' before initialization</code></pre>
-          <p>
-            To remember: Hoisting exists, and though it saves
-            <em>function declarations</em> and variable <em>names</em> in the
-            creation phase, it's still best practice to put all global variables
-            at the top of your file and don't rely on hoisting to do something
-            for you.
-          </p>
           <h4>Closures</h4>
           <p>
             Closures happen when a function accesses the execution context
@@ -1398,9 +1352,7 @@ const hello = function () {console.log("Hello")};
             <strong>Function scope</strong> means the variables, etc. are only
             available in the function. Take note that a function inside another
             function has access to all of its parent's variables, while the
-            parent CANNOT access the variables inside the child scope. Think of
-            it like kids can take their parent's money all they want, but it's a
-            no no to take your kid's money. That's theirs, yo.
+            parent CANNOT access the variables inside the child scope.
           </p>
           <p>
             <strong>Block scope</strong> means the variables, etc. are only
@@ -1470,12 +1422,11 @@ tyra.message();
             <li>
               Arrow functions do not get their own <em>this</em> keyword, but
               instead, they <em>inherit</em> the <em>this</em> from their
-              parent. If you use it as an object method, which is not its own
-              block, its parent is the global object. If the arrow function is
-              <em>inside</em> another method, then the arrow function's parent
-              is the object. This could lead to some confusion, but best not to
-              use arrow functions as methods, with the exception of being able
-              to use them <em>inside</em> method functions.
+              parent. If the arrow function is <em>inside</em> another method,
+              then the arrow function's parent is the object. This could lead to
+              some confusion, but best not to use arrow functions as methods,
+              with the exception of being able to use them
+              <em>inside</em> method functions.
             </li>
             <li>
               There are ways to force <em>this</em> to bind to different things
@@ -1488,14 +1439,14 @@ tyra.message();
           </ul>
           <h4>Explicit Binding</h4>
           <p>
-            Everything above showed how the <em>this</em> keyword acts by
-            default. However, there are ways to make it act differently if you
-            explicitly tell it to do so, aka
+            The above rules show how the <em>this</em> keyword acts by default.
+            However, there are ways to make <em>this</em> act differently
+            through
             <strong>explicit binding.</strong>
           </p>
           <p>
-            <strong>Call Method:</strong> You can use the call method to
-            explicity tell JS which object you want <em>this</em> to point to.
+            <strong>Call Method:</strong> Use the call method to explicity tell
+            JS which object <em>this</em> should point to.
           </p>
           <pre class="language-javascript"><code>const dog = {
   animal: "dog",
@@ -1526,9 +1477,7 @@ console.log(aboutAny.call(cat)); // Bind "this" to cat
           <p>
             <strong>Bind Method:</strong> Perhaps the most used of the three,
             the bind method returns a new function with the
-            <em>this</em> keyword permanently bound to the specified object. It
-            also allows for partial application, where you can set default
-            parameters.
+            <em>this</em> keyword permanently bound to the specified object.
           </p>
           <pre class="language-javascript"><code>const burgerPlus = {
   name: "Burger Plus",
@@ -1553,10 +1502,6 @@ const tacoOrders = burgerPlus.order.bind(tacoHeaven);
 // Creates a new function bound to burgerPlus's order function
 
 tacoOrders("Joe", 0, 2); // Order for Taco Heaven: Joe wants a taco and a water.</code></pre>
-          <p>
-            Notice you can call the function without specifying which object to
-            bind to
-          </p>
           <p>
             <em>Interesting to Note:</em> Bind can be used without the
             <em>this</em> keyword. In the following, the second function binds
@@ -1608,19 +1553,16 @@ const ages2 = [...ages];
 const num2 = [5, 6, 7, 8];
 const num3 = [...num, ...num2];
 console.log(num3); //[1, 2, 3, 4, 5, 6, 7, 8]</code></pre>
-          <p>
-            You can also pass items in an array as an argument in a function.
-          </p>
+          <p>Pass items in an array as an argument in a function.</p>
           <pre class="language-javascript"><code>const nums = [12, 56, 88];
 function add(num, num1, num2) {
   return num + num1 + num2;
 }
 console.log(add(...nums)); //156</code></pre>
           <p>
-            But there's a limitation here. The number of arguments in your
+            There's a limitation here, however. The number of arguments in the
             function must match the length of the array being spread. That's
-            where the rest parameter comes in, and oh goodie, it looks identical
-            to the spread operator. No problem keeping this straight.
+            where the rest parameter comes in.
           </p>
           <h4>Rest Parameter</h4>
           <p>
@@ -1636,10 +1578,8 @@ console.log(copy);
           <p>
             Where the rest parameter really shines is as a parameter in a
             function. It will create an array out of all of the the user-inputed
-            parameters, which if you think about it, is opposite of the spread
-            operator, which takes items out of an array. Here is an example of
-            how the rest parameter can be used to allow for multiple arguments
-            to be inputed.
+            parameters. Below is an example of the rest parameter allowing for
+            multiple arguments to be inputed.
           </p>
           <pre class="language-javascript"><code>function add(...numbers) {
 let count = 0;
@@ -1656,12 +1596,9 @@ console.log(add(1, 2, 3, 4, 5, 6, 7)); // 28</code></pre>
           </div>
           <p>
             Sets are an iterable data structure similar to arrays, and new to JS
-            as of ES6.
+            as of ES6. A set will store each unique character separately.
           </p>
-          <p>
-            Make a set as seen below: (The set will store each unique character
-            separately.)
-          </p>
+          <p>Make a set as seen below:</p>
           <pre
             class="language-javascript"
           ><code>const mySet = new Set("this is a set");
@@ -1690,10 +1627,9 @@ console.log(mySet);
             <li>The .has() method is similar to .includes() for arrays.</li>
           </ul>
           <p>
-            It's important to note that you cannot retrieve specific items out
+            It's important to note that specific items cannot be retrieved out
             of a set. Its purpose is simply to find out what is in a set.
           </p>
-          <p>You can loop over a set to see all of the items in the set.</p>
           <p>One main use cases is to remove duplicate values from arrays.</p>
         </div>
         <div class="text-para">
@@ -1745,17 +1681,17 @@ console.log(now);
             class="language-javascript"
           ><code>console.log(Number(now)); //1676393373533</code></pre>
           <p>
-            The Date object has many methods that allow for displaying the date
-            how you would like. Notice the month method is zero-based. February
-            is 1.
+            The Date object has many methods that allow for displaying the date.
+            Notice the month method is zero-based. February is 1.
           </p>
           <pre
             class="language-javascript"
           ><code>console.log(`${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`);
 // 2/14/2023</code></pre>
           <p>
-            You can also format the date according to location. JavaScript will
-            automatically change the format to fit with the custom location.
+            It is also possible to format the date according to location.
+            JavaScript will automatically change the format to fit with the
+            custom location.
           </p>
           <pre
             class="language-javascript"
@@ -1765,7 +1701,7 @@ console.log(nowUSA); // 2/14/2023
 const nowHungary = new Intl.DateTimeFormat("hu-HU").format(new Date());
 console.log(nowHungary); // 2023. 02. 14.</code></pre>
           <p>
-            You can find the Internationalization codes
+            Internationalization codes can be found
             <a href="http://www.lingoes.net/en/translator/langcode.htm"
               >here.</a
             >
@@ -1884,21 +1820,18 @@ request.addEventListener("load", function () {
           ><code>{name: 'Spain', topLevelDomain: Array(1), alpha2Code: 'ES', alpha3Code: 'ESP' callingCodes: Array(1), …}</code></pre>
           <p>Buuuuut...</p>
           <p>
-            AJAX calls using XML are asynchronous, right? So say you get a bunch
-            of info for a bunch of different countries, and you want to display
-            all of those countries names in alphabetical order on your website?
-            You can't control which asynchronous AJAX calls will finish first.
-            Too bad. So sad. No alphabetical order for you.
+            AJAX calls using XML are asynchronous. With asynchronous calls, it's
+            impossible to predict which calls will finish first. That can be a
+            problem if a developer wants to display a list in alphabetical
+            order.
           </p>
           <p>
-            Ok, just kidding, there is a way to control the order of
-            asynchronous tasks, but to do so you must nest AJAX calls within the
-            event listener of the previous AJAX call, so the the following call
-            will only be made once the first was loaded, and so forth.
+            In order to control the order, AJAX calls must be nested inside of
+            the event listener of the previous AJAX call, so the the following
+            call will only be made once the first was loaded, and so forth.
           </p>
-          <p>Buuuuut...</p>
           <p>
-            This is a bad idea. And that bad idea has a name:
+            However! This is bad practice and leads to Callback Hell.
             <strong>Callback Hell</strong>.
           </p>
           <p>
@@ -1921,7 +1854,7 @@ request.addEventListener("load", function () {
 });</code></pre>
           <p>
             Callback hell looks messy, is hard to maintain, and hard to read.
-            But there's a solution, I promise. It's called Promises.
+            But there's a solution. It's called Promises.
           </p>
           <h4>Promises</h4>
           <p>
@@ -1937,11 +1870,10 @@ request.addEventListener("load", function () {
             resolve and reject, as parameters. The executor will return the
             future value of the promise. The "resolve" function marks the
             Promise as fulfilled. The value passed into the "resolve" function
-            becomes the value accessible by the "then" function (you will see
-            this soon, I promise, haha). The value in the "reject" function will
-            be accessible by the catch error handling method. It's important
-            that a Promise always end up in one of two states: either resolved
-            or rejected.
+            becomes the value accessible by the "then" function. The value in
+            the "reject" function will be accessible by the catch error handling
+            method. It's important that a Promise always end up in one of two
+            states: either resolved or rejected.
           </p>
           <p>Check out the syntax of a Promise:</p>
           <pre
@@ -2018,9 +1950,9 @@ region: "Europe"</code></pre>
           </p>
           <p>
             <strong>IMPORTANT: </strong> This is different from Callback Hell in
-            one important way. You can chain "then" methods one after the other
-            without creating callback hell, but ONLY if you attach the second
-            "then" function AFTER the first "then", not INSIDE of it.
+            one important way. Chain "then" methods one after the other without
+            creating callback hell by attaching the second "then" function after
+            the first, not inside of it.
           </p>
           <h4>Promisifying</h4>
           <p>
@@ -2071,8 +2003,8 @@ getCountry("spain");
 // [{…}]0: {name: 'Spain', topLevelDomain: Array(1), alpha2Code: 'ES', alpha3Code: 'ESP', callingCodes: Array(1), …}</code></pre>
           <p>
             <strong>Important:</strong> Async functions always return promises.
-            That means if you try to return something from the function, like
-            the country name below, you'll get the following:
+            Attempting to return a value from an asynchronous function, like the
+            country name below, will display "Promise pending":
           </p>
           <pre
             class="language-javascript"
@@ -2119,7 +2051,7 @@ getCountry("spain").then((countryName) => console.log(countryName));
 })();
 // Spain</code></pre>
           <p>
-            The above example is the main way people use to return values from
+            The above example is the preferred method to return values from
             async functions.
           </p>
           <h4>Promise Combinators</h4>
@@ -2212,7 +2144,7 @@ console.log(regex.exec(string));
             the string (opposite of the ^).
           </p>
           <p>
-            Test your regular expressions at
+            Test regular expressions at
             <a href="https://www.debuggex.com/">debuggex.</a>
           </p>
         </div>
@@ -2238,21 +2170,13 @@ console.log(regex.exec(string));
             <li>Top-level "this" is undefined, instead of "window".</li>
             <li>Imports and Exports are used to share code between files.</li>
             <li>Imports are hoisted.</li>
-            <li>
-              IMPORTANT: To link to your HTML file, you must add module as the
-              type in the script tag: &lt;script type="module"
-              src="script.js"&gt;. The module files are not directly linked to
-              in the HTML. The browser reads the script.js file, and when it
-              sees an import, it will go to find the file. Modules only work
-              locally if running a live-server environment.
-            </li>
             <li>File downloading is automatically asynchronous.</li>
             <li>
               Imported modules are executed BEFORE the module they are imported
-              to. Think of it like guests are served first. The imported module
-              "visiting" the existing module must always run first, because code
-              in the existing module is going to need some of the
-              variables/functions from the imported module in order to work.
+              to. The imported module "visiting" the existing module must always
+              run first, because code in the existing module will likely need
+              some of the variables/functions from the imported module in order
+              to work.
             </li>
             <li>
               The shared variables/functions are NOT copies. They are live
@@ -2268,14 +2192,14 @@ console.log(regex.exec(string));
           <pre class="language-javascript"><code>const price = 50;
 const tax = 5;   
 export { price, tax };</code></pre>
-          <p>Import the selected values into your script file:</p>
+          <p>Import the selected values into a script file:</p>
           <pre
             class="language-javascript"
           ><code>import { price, tax } from "./modules/export.js";
 console.log(price, tax); // 50 5</code></pre>
           <p>
             Or import the entire file, but note that while this runs the
-            module's global code, it doesn't actually import any values
+            module's global code, it doesn't actually import any values.
           </p>
           <pre
             class="language-javascript"
@@ -2289,8 +2213,8 @@ console.log(price, tax); // 50 5</code></pre>
 console.log(totalCost.price + totalCost.tax); // 55</code></pre>
           <h4>Default Export</h4>
           <p>
-            If there is only one value you are exporting, you don't even have to
-            save it to a variable. You can use the "default" export:
+            If there is only one value being exporting, use the "default"
+            export:
           </p>
           <pre
             class="language-javascript"
@@ -2302,7 +2226,7 @@ console.log(totalCost.price + totalCost.tax); // 55</code></pre>
 console.log(add); // This is the only default value</code></pre>
           <h4>Top-Level Await in Modules</h4>
           <p>
-            Top-level await can now be used in modules WITHOUT being INSIDE an
+            Top-level await can now be used in modules without being inside an
             Async function. The module basically becomes an Async function. The
             script file will wait for the module to fulfill its promise, then
             take the resulting value.
@@ -2317,8 +2241,8 @@ console.log("Finished");
 // Finished</code></pre>
           <p>
             Notice the order of the console logs. Normally, the "Finished" log
-            would come BEFORE the result of an async function, but since "await"
-            is not inside of an async function, it BLOCKS the execution. It's
+            would come before the result of an async function, but since "await"
+            is not inside of an async function, it blocks the execution. It's
             not asynchronous in this context.
           </p>
           <p>Save the result in a variable in the module:</p>
@@ -2334,15 +2258,15 @@ export { data };</code></pre>
 console.log(data[0]);
 // {userId: 1, id: 1, title: 'sunt aut facere repellat provident'}</code></pre>
           <p>
-            You can use top-level await in conjunction with async functions, in
-            the following scenario. Below we can create an async function and
-            have it return an object, but remember async functions only ever
-            return a Promise, and if that promise is still pending, meaning the
-            data is still being retrieved, then when we run that function we
-            won't actually get the returned object. However, in modules, we can
-            use top-level await when we call the function (as seen below), which
-            will wait to run the function until the request is complete. This is
-            easier than using "then".
+            Top-level await can be used in conjunction with async functions in
+            the following scenario. An async function can be created to return
+            an object; however, async functions always return a Promise. If the
+            Promise is still pending, meaning the data is still being retrieved,
+            running the function will not immediately yield the returned object.
+            In modules, top-level await can be used when calling the function
+            (as shown below), which ensures the function waits until the request
+            is complete before continuing execution. This approach is often
+            simpler and more readable than chaining with .then().
           </p>
           <pre
             class="language-javascript"
@@ -2359,98 +2283,6 @@ export { firstObject };</code></pre>
           ><code>import { firstObject } from "./modules/export.js";
 console.log(firstObject);
 // {userId: 1, id: 1, title: 'sunt aut facere repellat provident'}</code></pre>
-        </div>
-        <div class="text-para">
-          <div class="h2-container">
-            <h2 id="commandLine">Command Line</h2>
-          </div>
-          <p>
-            So to be clear, the command line isn't about JavaScript. It's just
-            about talking to your computer and telling it to do things, but I'm
-            putting some of the basic commands here anyway, because these are my
-            notes and I can do what I want, bwa ha ha.
-          </p>
-          <ul>
-            <li>cd <br />change directory</li>
-            <li>cd / <br />go to Root. Root is the base of your computer.</li>
-            <li>
-              cd ~ <br />go to Home. Your home is Users/tyra. Good advice: if
-              you get lost, go home.
-            </li>
-            <li>cd ~Desktop <br />from home you can go to your Desktop</li>
-            <li>
-              pwd <br />print working directory. Handy if you get lost, this
-              will tell you where you are.
-            </li>
-            <li>open .<br />use to open the directory in the finder.</li>
-            <li>Control-C <br />this will quit what you are doing</li>
-            <li>
-              mkdir <br />
-              make directory
-            </li>
-            <li>
-              mkdir -p<br />the -p flag will make subdirectories, so if you make
-              a list "mkdir -p grandma/mama/baby" then it will make all those
-              directories as subdiretories inside the parent
-            </li>
-            <li>cd .. <br />goes to parent directory (next one up)</li>
-            <li>
-              cd ../..<br />goes up 2 folders. You can chain these multiple
-              times: ../../../
-            </li>
-            <li>ls<br />lists contents of directory</li>
-            <li>
-              touch &lt;filename&gt;<br />adds a new file into the current
-              directory
-            </li>
-            <li>
-              cp &lt;file-to-be-copied&gt; &lt;new-name-of-copied-file&gt;<br />copies
-              a file, new copy has different name
-            </li>
-            <li>
-              cp &lt;file-to-be-copied&gt; &lt;directory name/&gt; <br />copy
-              file to a different directory, it will appear there with same name
-              as before
-            </li>
-            <li>
-              cp -r &lt;files-to-be-copied&gt;
-              &lt;new-name-of-copied-files&gt;<br />copy an entire directory and
-              its contents, including files and directories
-            </li>
-            <li>
-              mv &lt;file-to-be-renamed&gt; &lt;new-name&gt; <br />mv renames
-              files when two arguments are given, the name of the file and the
-              name to replace it with
-            </li>
-            <li>
-              mv &lt;file-to-be-moved&gt; &lt;direction-to-go&gt; <br />mv will
-              move a file up into other directories if a path is provided, like
-              ../.. will move the file up two levels.
-            </li>
-            <li>
-              less &lt;filename&gt; <br />less will open the contents of a file
-              into the terminal to view.<br />To escape, press "q" for quit.
-            </li>
-            <li>
-              cat &lt;filename&gt; <br />will print contents of a file into
-              terminal to view, so it will stay in view in terminal.
-            </li>
-            <li>
-              rm &lt;filename&gt; <br />rm will remove a file. This is
-              permanent, be careful!
-            </li>
-            <li>
-              rmdir &lt;directory-name&gt; <br />rm will remove a directory, but
-              it must be EMPTY
-            </li>
-            <li>
-              rm -ir &lt;directory-name&gt; <br />the "-r" flag stands for
-              recursive and will remove a directory AND its contents, while the
-              "-i" flag is going to check with you that really want to delete
-              each of these files/folders. Good to use "i" flag to make sure you
-              don't accidentally delete stuff.
-            </li>
-          </ul>
         </div>
       </div>
       <nav class="sidenav-right">
@@ -2469,10 +2301,10 @@ console.log(firstObject);
           </div>
           <div class="sidenav-right-textbox">
             <p>
-              Best practice is to use "const" for variables. If you need your
-              variable to mutate, then use "let," since it allows you to
-              reassign the variable's value. "Var" is retired but might be seen
-              in older code.
+              The best practice is to use const for variable declarations. If a
+              variable needs to be reassigned, let should be used, as it allows
+              the variable’s value to change. The var keyword is considered
+              outdated but may still appear in legacy code.
               <a
                 href="https://www.freecodecamp.org/news/var-let-and-const-whats-the-difference/"
                 >Learn more</a
@@ -2481,10 +2313,10 @@ console.log(firstObject);
           </div>
           <div class="sidenav-right-textbox">
             <p>
-              It is best practice to place &lt;script&gt; tags at the end of the
-              body section, just before the closing body tag. This allows the
-              HTML on the page to load before your JS code tries to manipulate
-              it, but async and defer are new options from HTML 5. See
+              Placing &lt;script&gt; tags at the end of the body section, just
+              before the closing body tag, allows the HTML on the page to load
+              before JavaScript manipulates it. However, async and defer are new
+              options from HTML 5. See
               <a href="#page-loading">when to use</a> them.
             </p>
           </div>
