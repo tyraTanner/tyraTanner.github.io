@@ -13,23 +13,108 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;0,800;1,400;1,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Limelight&family=Suez+One&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <main id="home-main">
+      <div class="nav">
+        <div class="nav-name">tyra tanner</div>
+        <div class="nav-items">
+          <a class="nav-projects" href="#my-projects">projects</a>
+          <a class="nav-writing" href="#my-writing">writing</a>
+          <a class="nav-birds" href="#my-birds">birds</a>
+        </div>
+      </div>
+      <div class="nav-mobile">
+        <div class="nav-name">tyra tanner</div>
+        <!-- IF WANT TO ADD MENU FOR MOBILE, i began doing so here, there's an svg icon ready to go -->
+        <!-- <div class="menu-icon-mobile">
+          <svg
+            width="34"
+            height="21"
+            viewBox="0 0 34 21"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M2 2.5H32"
+              stroke="black"
+              stroke-width="4"
+              stroke-linecap="round"
+            />
+            <path
+              d="M2 11H32"
+              stroke="black"
+              stroke-width="4"
+              stroke-linecap="round"
+            />
+            <path
+              d="M2 19H32"
+              stroke="black"
+              stroke-width="4"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div> -->
+      </div>
       <div class="wrapper">
-        <div class="name">Tyra Tanner</div>
-        <p class="subTitle">
-          Hello! I'm a content creator and self-taught developer working with
-          React and Nextjs.
-        </p>
-        <p class="subTitle">Check out my projects below:</p>
+        <div class="info">
+          <div class="intro">
+            <p class="lime-light intro-1">hey there,</p>
+            <p class="lime-light intro-2">
+              i'm <span class="tyra">tyra</span>.
+            </p>
+            <p class="description">writer. developer. bird mom.</p>
+          </div>
+          <div class="tyra-img"><img src="./TyraImg.png" /></div>
+        </div>
+        <div class="info-mobile">
+          <div class="text-intro-mobile">
+            <p class="lime-light intro-1-mobile">hey there,</p>
+            <p class="lime-light intro-2-mobile">
+              i'm <span class="tyra">tyra</span>.
+            </p>
+          </div>
+          <div class="tyra-img-mobile"><img src="./TyraImg.png" /></div>
+          <p class="description-mobile">writer. developer. bird mom.</p>
+        </div>
+
+        <div class="subTitle">
+          <p id="my-projects" class="lime-light projects">my projects</p>
+          <div class="swirly-lines">
+            <svg
+              width="371"
+              height="30"
+              viewBox="0 0 371 30"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1.00145 11.5L93.0001 18.5C93.0001 18.5 210.5 25.867 272.5 13.9335C334.5 2 370.001 12.5027 370.001 12.5027"
+                stroke="black"
+                stroke-width="2"
+              />
+              <path
+                d="M370.03 16.9987L277.907 11.8919C277.907 11.8919 160.28 6.94251 98.5389 20.1484C36.7975 33.3543 1.08761 23.5838 1.08761 23.5838"
+                stroke="black"
+                stroke-width="2"
+              />
+              <path
+                d="M370.099 9.78738C359 5.5 334.5 -2.5 275.5 3.49833C216.5 9.49667 158.391 27.4985 98.4996 27.4985C38.6078 27.4985 1.15663 16.3725 1.15663 16.3725"
+                stroke="black"
+                stroke-width="2"
+              />
+            </svg>
+          </div>
+        </div>
         <div class="cardWrapper">
-          <a href="https://quizsurvivor.com" class="card"
-            ><img src="quizsurvivor.jpg" />
+          <div class="card">
+            <div class="cardImg">
+              <img src="quizsurvivor.jpg" />
+            </div>
             <div class="cardText">
               <p class="cardTitle">QUIZ SURVIVOR</p>
               <p class="cardDescription">
@@ -39,11 +124,16 @@
                 used include React, Next.js, Typescript, Git, Jest, and CSS
                 modules.
               </p>
+              <a href="https://quizsurvivor.com"
+                ><button class="cardButton">View Project</button></a
+              >
             </div>
-          </a>
+          </div>
 
-          <a href="https://coconutcravings.com" class="card"
-            ><img src="soft-lemon-cookies.jpg" />
+          <div class="card">
+            <div class="cardImg">
+              <img src="soft-lemon-cookies.jpg" />
+            </div>
             <div class="cardText">
               <p class="cardTitle">COCONUT CRAVINGS</p>
               <p class="cardDescription">
@@ -54,11 +144,16 @@
                 change measurements from US to metric. Technologies used include
                 React, Next.js, SQLite, Prisma, Markdown, Git, and CSS modules.
               </p>
+              <a href="https://coconutcravings.com"
+                ><button class="cardButton">View Project</button></a
+              >
             </div>
-          </a>
+          </div>
 
-          <a href="js-notes/index.html" class="card"
-            ><img src="javascript-736400_1280.png" />
+          <div class="card">
+            <div class="cardImg">
+              <img src="javascript-736400_1280.png" />
+            </div>
             <div class="cardText">
               <p class="cardTitle">ALL THINGS JAVASCRIPT</p>
               <p class="cardDescription">
@@ -68,20 +163,28 @@
                 methods, classes, and delves into more advanced concepts of
                 asynchronous JavaScript, promises, and more.
               </p>
-            </div></a
-          >
-          <a href="css-notes/home.html" class="card"
-            ><img src="logo-2582747_1280.png" />
+              <a href="js-notes/index.html"
+                ><button class="cardButton">View Project</button></a
+              >
+            </div>
+          </div>
+          <div class="card">
+            <div class="cardImg">
+              <img src="logo-2582747_1280.png" />
+            </div>
             <div class="cardText">
               <p class="cardTitle">THE COOL PARTS OF CSS</p>
               <p class="cardDescription">
                 The Cool Parts of CSS is a fully responsive site that highlights
                 core CSS concepts, including layout types such as flow, flex,
-                and grid. It also explains media queries and techniques for
+                and grid. Learn about media queries and techniques for
                 responsive design.
               </p>
-            </div></a
-          >
+              <a href="css-notes/home.html"
+                ><button class="cardButton">View Project</button></a
+              >
+            </div>
+          </div>
         </div>
       </div>
     </main>
